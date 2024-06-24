@@ -27,18 +27,18 @@ extends Node3D
 @export var is_AI = false
 
 # car settings
-@export var max_speed = 100
-@export var brake_force = 0.05 # value between 0 - 1
-@export var turn_strength = 30
-@export var acceleration = 1 # value between 0 - 1
-@export var body_height = 0.8
-@export var body_pos = 0
+@export var max_speed = 200
+@export var brake_force = 0.15 # value between 0 - 1
+@export var turn_strength = 120
+@export var acceleration = 0.7 # value between 0 - 1
+@export var body_height = 0.67
+@export var body_pos = -0.074
 @export var is_lights_on = true
 @export var car_name = "car"
 var speed_target : float = 0.0
 var speed : float = 0.0
 var torque_velocity : float = 0.0
-var skid_threshold = 0.01
+var skid_threshold = 0.028
 var was_accelerating = false
 
 var normal = Vector3(0, 1, 0)
