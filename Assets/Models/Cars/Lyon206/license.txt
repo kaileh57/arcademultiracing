@@ -1,0 +1,11 @@
+Model Information:
+* title:	Vehicle - Peugeot 206
+* source:	https://sketchfab.com/3d-models/vehicle-peugeot-206-33657ac0e044493daf495d45424ead7a
+* author:	thcyrax (https://sketchfab.com/kitsunegraphics)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Vehicle - Peugeot 206" (https://sketchfab.com/3d-models/vehicle-peugeot-206-33657ac0e044493daf495d45424ead7a) by thcyrax (https://sketchfab.com/kitsunegraphics) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

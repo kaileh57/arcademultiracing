@@ -1,0 +1,11 @@
+Model Information:
+* title:	ENVIRONMENT - KITSUNE GRAPHICS
+* source:	https://sketchfab.com/3d-models/environment-kitsune-graphics-a302627b20ff43ddbaa4ec35b56b45d5
+* author:	thcyrax (https://sketchfab.com/kitsunegraphics)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "ENVIRONMENT - KITSUNE GRAPHICS" (https://sketchfab.com/3d-models/environment-kitsune-graphics-a302627b20ff43ddbaa4ec35b56b45d5) by thcyrax (https://sketchfab.com/kitsunegraphics) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
