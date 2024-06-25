@@ -3,33 +3,37 @@
 [ext_resource type="MeshLibrary" uid="uid://5adi2iobv6n2" path="res://tilemaps/lib2.tres" id="1_pxd21"]
 [ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_a83bf"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ns13h"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1m04q"]
 
-[sub_resource type="Sky" id="Sky_adxly"]
-sky_material = SubResource("PhysicalSkyMaterial_ns13h")
+[sub_resource type="Sky" id="Sky_na16t"]
+sky_material = SubResource("ProceduralSkyMaterial_1m04q")
+process_mode = 1
 
-[sub_resource type="Environment" id="Environment_ymw2m"]
+[sub_resource type="Environment" id="Environment_5gip4"]
 background_mode = 2
-sky = SubResource("Sky_adxly")
+sky = SubResource("Sky_na16t")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_intensity = 0.2
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.001
-volumetric_fog_detail_spread = 6.0
-volumetric_fog_sky_affect = 0.0
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3xkc7"]
 
 [node name="Track" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ymw2m")
+[node name="Processing" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5gip4")
 camera_attributes = SubResource("CameraAttributesPractical_3xkc7")
 
-[node name="GridMap" type="GridMap" parent="WorldEnvironment"]
+[node name="GridMap" type="GridMap" parent="Processing"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 mesh_library = ExtResource("1_pxd21")
 cell_size = Vector3(0.5, 0.01, 0.5)
@@ -39,10 +43,9 @@ data = {
 metadata/_edit_lock_ = true
 metadata/_editor_floor_ = Vector3(0, 150, 0)
 
-[node name="Start" parent="WorldEnvironment/GridMap" instance=ExtResource("2_a83bf")]
+[node name="Start" parent="Processing/GridMap" instance=ExtResource("2_a83bf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.005, 0.25)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Processing"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 191, 0)
 light_energy = 3.0
-shadow_enabled = true
