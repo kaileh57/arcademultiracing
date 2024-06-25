@@ -318,15 +318,6 @@ is_lights_on = false
 car_name = "Canyonero"
 target_variance = 0.5
 
-[node name="Rig" type="Node3D" parent="."]
-transform = Transform3D(0.707107, 0.298836, -0.640856, 0, 0.906308, 0.422618, 0.707107, -0.298836, 0.640856, 0, -0.5, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Rig"]
-transform = Transform3D(1, 0, 0, 0, 1, -3.57628e-07, 0, 0, 1, 9.53674e-07, 0, 25)
-current = true
-fov = 30.0
-far = 100.0
-
 [node name="Container" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
@@ -422,6 +413,7 @@ skeleton = NodePath("")
 [node name="SmokeLeft" type="GPUParticles3D" parent="Container/Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.600076, 0.0171198, -1.04748)
 cast_shadow = 0
+emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_mlge1")
 draw_pass_1 = SubResource("QuadMesh_2eooe")
@@ -429,6 +421,7 @@ draw_pass_1 = SubResource("QuadMesh_2eooe")
 [node name="SmokeRight" type="GPUParticles3D" parent="Container/Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.600076, 0.0171198, -1.04748)
 cast_shadow = 0
+emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_mlge1")
 draw_pass_1 = SubResource("QuadMesh_2eooe")
@@ -436,6 +429,7 @@ draw_pass_1 = SubResource("QuadMesh_2eooe")
 [node name="RayCast3D" type="RayCast3D" parent="Container/Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 target_position = Vector3(0, -0.7, 0)
+hit_from_inside = true
 
 [node name="LeftSkidPos" type="Marker3D" parent="Container/Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.413, 0, -1.09457)
@@ -449,6 +443,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Container/Model/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.349078, -0.0129013)
 shape = SubResource("BoxShape3D_3u5lb")
+
+[node name="Camera3D" type="Camera3D" parent="Container/Model"]
+transform = Transform3D(-1, -1.77636e-15, -8.74228e-08, -2.47899e-08, 0.958953, 0.283563, 8.38344e-08, 0.283563, -0.958953, 0, 2.08518, -3.83093)
 
 [node name="Sphere" type="RigidBody3D" parent="." groups=["AI"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

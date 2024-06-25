@@ -1,7 +1,7 @@
 extends Node3D
 
 # car model
-@onready var rig = $Rig
+
 @onready var container = $Container
 @onready var model = $Container/Model
 @onready var sphere = $Sphere
@@ -21,7 +21,7 @@ extends Node3D
 @onready var bump_sound = $BumpSFX
 @onready var front_lights = $Container/Model/body/FrontLights
 @onready var rear_lights = $Container/Model/body/RearLights
-@onready var cam = $Rig/Camera3D
+
 
 # CPU or human
 @export var is_AI = false
@@ -90,12 +90,7 @@ func _ready():
 	else:
 		front_lights.visible = true
 		
-	if not is_AI:
-		cam.current = true
-		car_name = "player"
-	else:
-		cam.current = false
-		car_name = name
+
 
 	#print(car_name)
 
@@ -127,6 +122,7 @@ func _physics_process(delta):
 	else:
 		# Rotate model using keys
 		if Input.is_action_pressed("left") and abs(speed) > 0 and raycast.is_colliding():
+			
 			model_rotation.y += turn_strength * delta
 		elif Input.is_action_pressed("right") and abs(speed) > 0 and raycast.is_colliding():
 			model_rotation.y -= turn_strength * delta
@@ -138,39 +134,39 @@ func _physics_process(delta):
 	sphere.apply_force(forward * speed_target * 1.25, model.transform.origin)
 	#print(speedTarget)
 	
-	if not is_AI:
-		# lights
-		if not is_lights_on:
-			front_lights.visible = false
-			rear_lights.visible = false
-		else:
-			front_lights.visible = true
-			rear_lights.visible = true
-		
-		if not engine_sound.playing:
-				engine_sound.play()
-				engine_sound.volume_db = -10
-		if Input.is_action_pressed("forward"):
-			if raycast.is_colliding():
-				speed += max_speed * acceleration * delta * 0.85
-				was_accelerating = true
-			else:
-				was_accelerating = false
-			
-			# Clamp the speed to the maximum speed
-			speed = min(speed, max_speed)
-		elif Input.is_action_pressed("back") and raycast.is_colliding():
-			if speed > 0:
-				# Apply brake force until the speed is zero
-				speed -= max_speed * brake_force * delta
-			else:
-				# If already moving backward, set speed to zero
-				speed = 0
-							
-			$Container/Model/body/RearLights/Left/StopLightLeft.light_energy = 10
-			$Container/Model/body/RearLights/Right/StopLightRight.light_energy = 10
 
-		elif not raycast.is_colliding():
+	if not is_lights_on:
+		front_lights.visible = false
+		rear_lights.visible = false
+	else:
+		front_lights.visible = true
+		rear_lights.visible = true
+	
+	if not engine_sound.playing:
+			engine_sound.play()
+			engine_sound.volume_db = -10
+	if Input.is_action_pressed("forward"):
+		print("hhhh")
+		if raycast.is_colliding():
+			speed += max_speed * acceleration * delta * 0.85
+			was_accelerating = true
+		else:
+			was_accelerating = false
+		
+		# Clamp the speed to the maximum speed
+		speed = min(speed, max_speed)
+	elif Input.is_action_pressed("back") and raycast.is_colliding():
+		if speed > 0:
+			# Apply brake force until the speed is zero
+			speed -= max_speed * brake_force * delta
+		else:
+			# If already moving backward, set speed to zero
+			speed = 0
+						
+		$Container/Model/body/RearLights/Left/StopLightLeft.light_energy = 10
+		$Container/Model/body/RearLights/Right/StopLightRight.light_energy = 10
+
+		if not raycast.is_colliding():
 			# If the forward button is not pressed and the car is in the air, maintain or slightly decrease speed
 			speed = max(0, speed - max_speed * 0.4 * delta)
 		
@@ -235,7 +231,7 @@ func _physics_process(delta):
 		smoke_right.emitting = false
 	
 	# Camera
-	rig.transform.origin = rig.transform.origin.lerp(container.transform.origin, delta * 5)
+	#rig.transform.origin = rig.transform.origin.lerp(container.transform.origin, delta * 5)
 	
 	# Ground raycast
 	normal = normal.lerp(raycast_normal, delta * 8)
