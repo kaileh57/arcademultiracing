@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://mthntuqmpxp8"
+path="res://.godot/imported/pitsOfficeRoof.obj-3dff1a59f2eeed242015da052fc9709e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pitsOfficeRoof.obj-3dff1a59f2eeed242015da052fc9709e.mesh"]
+
+source_file="res://models/kenney/OBJ format/pitsOfficeRoof.obj"
+dest_files=["res://.godot/imported/pitsOfficeRoof.obj-3dff1a59f2eeed242015da052fc9709e.mesh", "res://.godot/imported/pitsOfficeRoof.obj-3dff1a59f2eeed242015da052fc9709e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

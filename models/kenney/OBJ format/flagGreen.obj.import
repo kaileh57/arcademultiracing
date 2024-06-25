@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d11jcq4u64lq0"
+path="res://.godot/imported/flagGreen.obj-08a5a24a15187181a414103e164f6f8f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/flagGreen.obj-08a5a24a15187181a414103e164f6f8f.mesh"]
+
+source_file="res://models/kenney/OBJ format/flagGreen.obj"
+dest_files=["res://.godot/imported/flagGreen.obj-08a5a24a15187181a414103e164f6f8f.mesh", "res://.godot/imported/flagGreen.obj-08a5a24a15187181a414103e164f6f8f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

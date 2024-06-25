@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dr6funaf60n0e"
+path="res://.godot/imported/roadBump.obj-d449ec7707797519cf032dfa04a4a5dc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadBump.obj-d449ec7707797519cf032dfa04a4a5dc.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadBump.obj"
+dest_files=["res://.godot/imported/roadBump.obj-d449ec7707797519cf032dfa04a4a5dc.mesh", "res://.godot/imported/roadBump.obj-d449ec7707797519cf032dfa04a4a5dc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

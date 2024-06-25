@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://xc0iwqhs6pg7"
+path="res://.godot/imported/flagCheckersSmall.obj-1a667083c604984e4d100d7d3e484460.mesh"
+
+[deps]
+
+files=["res://.godot/imported/flagCheckersSmall.obj-1a667083c604984e4d100d7d3e484460.mesh"]
+
+source_file="res://models/kenney/OBJ format/flagCheckersSmall.obj"
+dest_files=["res://.godot/imported/flagCheckersSmall.obj-1a667083c604984e4d100d7d3e484460.mesh", "res://.godot/imported/flagCheckersSmall.obj-1a667083c604984e4d100d7d3e484460.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

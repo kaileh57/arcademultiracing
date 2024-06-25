@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://byu4xbr3mx1j7"
+path="res://.godot/imported/roadRampLongCurvedWall.obj-ef4a755253730245c1476fb074f4f179.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadRampLongCurvedWall.obj-ef4a755253730245c1476fb074f4f179.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadRampLongCurvedWall.obj"
+dest_files=["res://.godot/imported/roadRampLongCurvedWall.obj-ef4a755253730245c1476fb074f4f179.mesh", "res://.godot/imported/roadRampLongCurvedWall.obj-ef4a755253730245c1476fb074f4f179.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dov15wqw1lqsa"
+path="res://.godot/imported/pitsGarageClosed.obj-7bcfadd7d41deaa5209ce92438a5e12e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pitsGarageClosed.obj-7bcfadd7d41deaa5209ce92438a5e12e.mesh"]
+
+source_file="res://models/kenney/OBJ format/pitsGarageClosed.obj"
+dest_files=["res://.godot/imported/pitsGarageClosed.obj-7bcfadd7d41deaa5209ce92438a5e12e.mesh", "res://.godot/imported/pitsGarageClosed.obj-7bcfadd7d41deaa5209ce92438a5e12e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

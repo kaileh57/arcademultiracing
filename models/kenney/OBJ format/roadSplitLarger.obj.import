@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dpitpiattnswk"
+path="res://.godot/imported/roadSplitLarger.obj-ed7a2cba76f691c4655fcbcf2adba73e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadSplitLarger.obj-ed7a2cba76f691c4655fcbcf2adba73e.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadSplitLarger.obj"
+dest_files=["res://.godot/imported/roadSplitLarger.obj-ed7a2cba76f691c4655fcbcf2adba73e.mesh", "res://.godot/imported/roadSplitLarger.obj-ed7a2cba76f691c4655fcbcf2adba73e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

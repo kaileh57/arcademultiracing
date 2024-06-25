@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://co60mve028noa"
+path="res://.godot/imported/grandStandCovered.obj-5fd8cbf333322602ea1978fbdceb0b27.mesh"
+
+[deps]
+
+files=["res://.godot/imported/grandStandCovered.obj-5fd8cbf333322602ea1978fbdceb0b27.mesh"]
+
+source_file="res://models/kenney/OBJ format/grandStandCovered.obj"
+dest_files=["res://.godot/imported/grandStandCovered.obj-5fd8cbf333322602ea1978fbdceb0b27.mesh", "res://.godot/imported/grandStandCovered.obj-5fd8cbf333322602ea1978fbdceb0b27.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

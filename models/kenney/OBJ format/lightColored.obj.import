@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://borsw0god8m67"
+path="res://.godot/imported/lightColored.obj-3f8a0bd12512d8c34f5953b6b387e17f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lightColored.obj-3f8a0bd12512d8c34f5953b6b387e17f.mesh"]
+
+source_file="res://models/kenney/OBJ format/lightColored.obj"
+dest_files=["res://.godot/imported/lightColored.obj-3f8a0bd12512d8c34f5953b6b387e17f.mesh", "res://.godot/imported/lightColored.obj-3f8a0bd12512d8c34f5953b6b387e17f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bsqoqtugacc4j"
+path="res://.godot/imported/lightRedDouble.obj-a08b7c68654138f47e35cd9f9c52fdaa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lightRedDouble.obj-a08b7c68654138f47e35cd9f9c52fdaa.mesh"]
+
+source_file="res://models/kenney/OBJ format/lightRedDouble.obj"
+dest_files=["res://.godot/imported/lightRedDouble.obj-a08b7c68654138f47e35cd9f9c52fdaa.mesh", "res://.godot/imported/lightRedDouble.obj-a08b7c68654138f47e35cd9f9c52fdaa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

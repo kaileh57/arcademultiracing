@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://brsii4qg1p6wu"
+path="res://.godot/imported/billboard.obj-69428d8f406c0a0758f48f2436ae2b47.mesh"
+
+[deps]
+
+files=["res://.godot/imported/billboard.obj-69428d8f406c0a0758f48f2436ae2b47.mesh"]
+
+source_file="res://models/kenney/OBJ format/billboard.obj"
+dest_files=["res://.godot/imported/billboard.obj-69428d8f406c0a0758f48f2436ae2b47.mesh", "res://.godot/imported/billboard.obj-69428d8f406c0a0758f48f2436ae2b47.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

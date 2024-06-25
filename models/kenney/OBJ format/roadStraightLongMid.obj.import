@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ds6u03vb0yp4h"
+path="res://.godot/imported/roadStraightLongMid.obj-3c7358a204824e43dea87963fe5f712b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadStraightLongMid.obj-3c7358a204824e43dea87963fe5f712b.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadStraightLongMid.obj"
+dest_files=["res://.godot/imported/roadStraightLongMid.obj-3c7358a204824e43dea87963fe5f712b.mesh", "res://.godot/imported/roadStraightLongMid.obj-3c7358a204824e43dea87963fe5f712b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

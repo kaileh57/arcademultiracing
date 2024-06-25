@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b6drt5o5u6q7y"
+path="res://.godot/imported/roadPitEntry.obj-d84e5046e5d6cafe460e0159c6a3feba.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadPitEntry.obj-d84e5046e5d6cafe460e0159c6a3feba.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadPitEntry.obj"
+dest_files=["res://.godot/imported/roadPitEntry.obj-d84e5046e5d6cafe460e0159c6a3feba.mesh", "res://.godot/imported/roadPitEntry.obj-d84e5046e5d6cafe460e0159c6a3feba.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

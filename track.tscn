@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgh7b17cfo3pb"]
+
+[ext_resource type="MeshLibrary" uid="uid://5adi2iobv6n2" path="res://tilemaps/lib2.tres" id="1_pxd21"]
+[ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_a83bf"]
+
+[sub_resource type="Environment" id="Environment_ymw2m"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3xkc7"]
+
+[node name="Track" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ymw2m")
+camera_attributes = SubResource("CameraAttributesPractical_3xkc7")
+
+[node name="GridMap" type="GridMap" parent="WorldEnvironment"]
+mesh_library = ExtResource("1_pxd21")
+cell_size = Vector3(1, 0.1, 1)
+data = {
+"cells": PackedInt32Array(0, 65534, 93)
+}
+metadata/_edit_lock_ = true
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Start" parent="WorldEnvironment/GridMap" instance=ExtResource("2_a83bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63, 0.05, 0.5)

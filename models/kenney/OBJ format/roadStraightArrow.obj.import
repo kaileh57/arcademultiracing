@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://topi8mxtbpb5"
+path="res://.godot/imported/roadStraightArrow.obj-ca42b1e7e6791326c3c65e70cc9a5067.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadStraightArrow.obj-ca42b1e7e6791326c3c65e70cc9a5067.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadStraightArrow.obj"
+dest_files=["res://.godot/imported/roadStraightArrow.obj-ca42b1e7e6791326c3c65e70cc9a5067.mesh", "res://.godot/imported/roadStraightArrow.obj-ca42b1e7e6791326c3c65e70cc9a5067.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

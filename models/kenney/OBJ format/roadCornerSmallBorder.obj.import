@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b13f1schsf87e"
+path="res://.godot/imported/roadCornerSmallBorder.obj-014ebcc5794c5f396d6e670cd1d70199.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadCornerSmallBorder.obj-014ebcc5794c5f396d6e670cd1d70199.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadCornerSmallBorder.obj"
+dest_files=["res://.godot/imported/roadCornerSmallBorder.obj-014ebcc5794c5f396d6e670cd1d70199.mesh", "res://.godot/imported/roadCornerSmallBorder.obj-014ebcc5794c5f396d6e670cd1d70199.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bnpbyn85g1wia"
+path="res://.godot/imported/roadCornerLarge.obj-c6b95fef71e6b4ecd9f7904281aced1a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadCornerLarge.obj-c6b95fef71e6b4ecd9f7904281aced1a.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadCornerLarge.obj"
+dest_files=["res://.godot/imported/roadCornerLarge.obj-c6b95fef71e6b4ecd9f7904281aced1a.mesh", "res://.godot/imported/roadCornerLarge.obj-c6b95fef71e6b4ecd9f7904281aced1a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dnvga4qpckj21"
+path="res://.godot/imported/lightPostModern.obj-e1925a4f882b817e216ae6a869761232.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lightPostModern.obj-e1925a4f882b817e216ae6a869761232.mesh"]
+
+source_file="res://models/kenney/OBJ format/lightPostModern.obj"
+dest_files=["res://.godot/imported/lightPostModern.obj-e1925a4f882b817e216ae6a869761232.mesh", "res://.godot/imported/lightPostModern.obj-e1925a4f882b817e216ae6a869761232.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

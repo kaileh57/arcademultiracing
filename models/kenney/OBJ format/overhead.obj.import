@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cyrrbw8bijgt0"
+path="res://.godot/imported/overhead.obj-ed8851e8384c40583e6e221c76e561f9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/overhead.obj-ed8851e8384c40583e6e221c76e561f9.mesh"]
+
+source_file="res://models/kenney/OBJ format/overhead.obj"
+dest_files=["res://.godot/imported/overhead.obj-ed8851e8384c40583e6e221c76e561f9.mesh", "res://.godot/imported/overhead.obj-ed8851e8384c40583e6e221c76e561f9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

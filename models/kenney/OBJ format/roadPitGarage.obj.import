@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dh2lui5nhetjj"
+path="res://.godot/imported/roadPitGarage.obj-01faaf011aca2e1f5ef31cb84897aae7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roadPitGarage.obj-01faaf011aca2e1f5ef31cb84897aae7.mesh"]
+
+source_file="res://models/kenney/OBJ format/roadPitGarage.obj"
+dest_files=["res://.godot/imported/roadPitGarage.obj-01faaf011aca2e1f5ef31cb84897aae7.mesh", "res://.godot/imported/roadPitGarage.obj-01faaf011aca2e1f5ef31cb84897aae7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
