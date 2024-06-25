@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://daaf86cifm1rg"
+path="res://.godot/imported/light_squareDouble.obj-a79a257daa37ede10a7e9b1102ae44fe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/light_squareDouble.obj-a79a257daa37ede10a7e9b1102ae44fe.mesh"]
+
+source_file="res://models/track/Models/OBJ format/light_squareDouble.obj"
+dest_files=["res://.godot/imported/light_squareDouble.obj-a79a257daa37ede10a7e9b1102ae44fe.mesh", "res://.godot/imported/light_squareDouble.obj-a79a257daa37ede10a7e9b1102ae44fe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

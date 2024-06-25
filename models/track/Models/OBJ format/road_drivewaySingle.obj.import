@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bxvxxi8j0r4eq"
+path="res://.godot/imported/road_drivewaySingle.obj-04cdf527fd026dc24b5e88880d915ada.mesh"
+
+[deps]
+
+files=["res://.godot/imported/road_drivewaySingle.obj-04cdf527fd026dc24b5e88880d915ada.mesh"]
+
+source_file="res://models/track/Models/OBJ format/road_drivewaySingle.obj"
+dest_files=["res://.godot/imported/road_drivewaySingle.obj-04cdf527fd026dc24b5e88880d915ada.mesh", "res://.godot/imported/road_drivewaySingle.obj-04cdf527fd026dc24b5e88880d915ada.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

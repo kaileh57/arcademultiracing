@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://de1vq1qju0u3v"
+path="res://.godot/imported/road_straightBarrier.obj-1bb6cc80b70beb81c02fab8ccc3705d5.mesh"
+
+[deps]
+
+files=["res://.godot/imported/road_straightBarrier.obj-1bb6cc80b70beb81c02fab8ccc3705d5.mesh"]
+
+source_file="res://models/track/Models/OBJ format/road_straightBarrier.obj"
+dest_files=["res://.godot/imported/road_straightBarrier.obj-1bb6cc80b70beb81c02fab8ccc3705d5.mesh", "res://.godot/imported/road_straightBarrier.obj-1bb6cc80b70beb81c02fab8ccc3705d5.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bgy6bxmxvvctb"
+path="res://.godot/imported/light_curvedCross.obj-5ad4444e85f6e8ee75b6274d31bd4132.mesh"
+
+[deps]
+
+files=["res://.godot/imported/light_curvedCross.obj-5ad4444e85f6e8ee75b6274d31bd4132.mesh"]
+
+source_file="res://models/track/Models/OBJ format/light_curvedCross.obj"
+dest_files=["res://.godot/imported/light_curvedCross.obj-5ad4444e85f6e8ee75b6274d31bd4132.mesh", "res://.godot/imported/light_curvedCross.obj-5ad4444e85f6e8ee75b6274d31bd4132.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
