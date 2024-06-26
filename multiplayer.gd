@@ -23,7 +23,7 @@ func _on_host_pressed():
 	add_player()
 	#hide buttons and capture mouse
 	$CanvasLayer.hide()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _on_join_pressed():
@@ -31,27 +31,30 @@ func _on_join_pressed():
 	peer.create_client("127.0.0.1", 57570)
 	#sets the peer to the peer we just made
 	multiplayer.multiplayer_peer = peer
+	print(multiplayer.multiplayer_peer.get_unique_id())
+	
 	#hide buttons and capture mouse
 	$CanvasLayer.hide()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	$Camera3D.current = true
+	
 
 func add_player(id = 1):
 	#instances the player, names it the id of the connecting person, and adds them to the scene
-	print("added")
+	print("added with ID of " + str(id))
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	call_deferred("add_child",player)
-
-	if pos == 1: player.position = track.pos1.global_position
-	if pos == 2: player.position = track.pos2.global_position
-	if pos == 3: player.position = track.pos3.global_position
-	if pos == 4: player.position = track.pos4.global_position
-	if pos == 5: player.position = track.pos5.global_position
-	if pos == 6: player.position = track.pos6.global_position
-	if pos == 7: player.position = track.pos7.global_position
-	if pos == 8: player.position = track.pos8.global_position
-	pos += 1
+	
+	#if pos == 1: player.position = track.pos1.global_position
+	#if pos == 2: player.position = track.pos2.global_position
+	#if pos == 3: player.position = track.pos3.global_position
+	#if pos == 4: player.position = track.pos4.global_position
+	#if pos == 5: player.position = track.pos5.global_position
+	#if pos == 6: player.position = track.pos6.global_position
+	#if pos == 7: player.position = track.pos7.global_position
+	#if pos == 8: player.position = track.pos8.global_position
+	#pos += 1
 
 func exit_game(id):
 	#disconnect smoothly and delete the player for everyone

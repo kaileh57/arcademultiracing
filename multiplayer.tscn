@@ -79,11 +79,14 @@ alignment = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://car/carmulti.tscn")
-spawn_path = NodePath("../Track/Cars")
+spawn_path = NodePath("..")
 
 [node name="Track" parent="." instance=ExtResource("3_tlvsk")]
 
 [node name="Cars" type="Node3D" parent="Track"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9619, 11.3356)
 
 [connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]

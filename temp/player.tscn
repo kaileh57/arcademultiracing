@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx48d371v1j67"]
+
+[ext_resource type="Script" path="res://temp/Player.gd" id="1_24r6s"]
+[ext_resource type="Texture2D" uid="uid://bd2ebpv6sgyx3" path="res://icon.svg" id="2_mygjh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfp45"]
+albedo_texture = ExtResource("2_mygjh")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_no3dm"]
+material = SubResource("StandardMaterial3D_xfp45")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yv0sc"]
+radius = 0.558421
+height = 2.0875
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oer0t"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_24r6s")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_no3dm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_yv0sc")
+
+[node name="CameraOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.528317, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraOrigin"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+spring_length = 2.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraOrigin/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6558e-07, 0, 5.76202)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oer0t")
