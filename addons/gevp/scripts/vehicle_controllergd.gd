@@ -9,7 +9,15 @@ extends Node3D
 func _ready():
 	#If we are in control of this player, we'll use this camera
 	cam.current = is_multiplayer_authority()
+
+
+@rpc("authority", "call_remote", "unreliable")
+func update_pos(pos, tran):
+	if !is_multiplayer_authority():
+		vehicle_node.transform = tran
+		vehicle_node.position = pos
 	
+
 
 func _enter_tree():
 	#Sets the person in control of this player to it's id/the id of the person controlling
@@ -22,6 +30,7 @@ func _enter_tree():
 
 func _physics_process(delta):
 	if is_multiplayer_authority():
+		update_pos.rpc(vehicle_node.position, vehicle_node.transform)
 		vehicle_node.brake_input = Input.get_action_strength("brakes")
 		vehicle_node.steering_input = Input.get_action_strength("left") - Input.get_action_strength("right") * sens
 		vehicle_node.throttle_input = pow(Input.get_action_strength("forward"), 2.0)
