@@ -35,6 +35,3 @@ mesh = SubResource("BoxMesh_xa260")
 [node name="Light2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.243836, 0, 0, 0, 0.11192, 0.00612932, 0, -0.0478674, 0.0143312, -0.884346, 0.598364, 0.944443)
 mesh = SubResource("BoxMesh_xa260")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.899802, 0, 0.436299, 0, 1, 0, -0.436299, 0, -0.899802, 0, 0.390013, 0)
