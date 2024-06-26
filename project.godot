@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Arcademultiracing"
-run/main_scene="res://track.tscn"
+run/main_scene="res://multiplayer.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 

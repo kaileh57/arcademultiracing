@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkr8l8j7bckd4"]
+[gd_scene load_steps=4 format=3 uid="uid://bkr8l8j7bckd4"]
 
 [ext_resource type="Script" path="res://multiplayer.gd" id="1_isnxn"]
 [ext_resource type="PackedScene" uid="uid://ssovesbb4ij2" path="res://car/carmulti.tscn" id="2_55p4b"]
+[ext_resource type="PackedScene" uid="uid://bgh7b17cfo3pb" path="res://track.tscn" id="3_tlvsk"]
 
 [node name="Multiplayer" type="Node3D"]
 script = ExtResource("1_isnxn")
@@ -55,6 +56,7 @@ offset_bottom = 437.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
+text = "127.0.0.1"
 placeholder_text = "IP (LAN only)"
 alignment = 1
 
@@ -74,6 +76,14 @@ theme_override_font_sizes/font_size = 100
 text = "57575"
 placeholder_text = "Port"
 alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://car/carmulti.tscn")
+spawn_path = NodePath("../Track/Cars")
+
+[node name="Track" parent="." instance=ExtResource("3_tlvsk")]
+
+[node name="Cars" type="Node3D" parent="Track"]
 
 [connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]

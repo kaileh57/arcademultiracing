@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ssovesbb4ij2"]
+[gd_scene load_steps=7 format=3 uid="uid://ssovesbb4ij2"]
 
 [ext_resource type="Script" path="res://addons/gevp/scripts/vehicle_controllergd.gd" id="1_3rt71"]
 [ext_resource type="PackedScene" uid="uid://fo6kt54q87tf" path="res://addons/gevp/scenes/arcade_car.tscn" id="2_yo3jx"]
@@ -6,8 +6,21 @@
 [ext_resource type="Script" path="res://addons/gevp/scripts/debug.gd" id="4_a63i8"]
 [ext_resource type="Script" path="res://addons/gevp/scripts/debug_ui.gd" id="5_vltjn"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lh4cx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("VehicleRigidBody:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("VehicleRigidBody:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [node name="VehicleController" type="Node3D" node_paths=PackedStringArray("vehicle_node")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_3rt71")
 vehicle_node = NodePath("VehicleRigidBody")
 
@@ -19,7 +32,9 @@ angular_damp_mode = 1
 stability_upright_damping = 10000.0
 
 [node name="EngineSound" parent="VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("3_hiq3l")]
+transform = Transform3D(10, 0, -5.68434e-14, 0, 10, 0, 5.68434e-14, 0, 10, 0, 0, 0)
 max_db = -24.0
+autoplay = false
 vehicle = NodePath("..")
 
 [node name="Pivot" type="Node3D" parent="VehicleRigidBody"]
@@ -40,3 +55,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_vltjn")
 metadata/_edit_use_anchors_ = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_lh4cx")

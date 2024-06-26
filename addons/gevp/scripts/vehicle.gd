@@ -419,11 +419,15 @@ class Axle:
 			slip = maxf(slip, wheel.slip_vector.y)
 		return slip
 
+
+
 func _ready():
-	initialize()
+	if get_parent().is_multiplayer_authority():
+		initialize()
 
 func _integrate_forces(state : PhysicsDirectBodyState3D):
-	current_gravity = state.total_gravity
+	if get_parent().is_multiplayer_authority():
+		current_gravity = state.total_gravity
 
 func initialize():
 	# Check to verify that surface types are provided
@@ -601,32 +605,33 @@ func initialize():
 	is_ready = true
 
 func _physics_process(delta):
-	kellen_physics_process(delta)
-	if not is_ready:
-		return
-	
-	## For stability calculations, we need the vehicle body inertia which isn't
-	## available immidiately
-	if not vehicle_inertia:
-		var rigidbody_inertia := PhysicsServer3D.body_get_direct_state(get_rid()).inverse_inertia.inverse()
-		if rigidbody_inertia.is_finite():
-			vehicle_inertia = rigidbody_inertia
-	
-	delta_time += delta
-	local_velocity = lerp(((global_transform.origin - previous_global_position) / delta) * global_transform.basis, local_velocity, 0.5)
-	previous_global_position = global_position
-	speed = local_velocity.length()
-	
-	process_drag()
-	process_braking(delta)
-	process_steering(delta)
-	process_throttle(delta)
-	process_motor(delta)
-	process_clutch(delta)
-	process_transmission(delta)
-	process_drive(delta)
-	process_forces(delta)
-	process_stability()
+	if get_parent().is_multiplayer_authority():
+		kellen_physics_process(delta)
+		if not is_ready:
+			return
+		
+		## For stability calculations, we need the vehicle body inertia which isn't
+		## available immidiately
+		if not vehicle_inertia:
+			var rigidbody_inertia := PhysicsServer3D.body_get_direct_state(get_rid()).inverse_inertia.inverse()
+			if rigidbody_inertia.is_finite():
+				vehicle_inertia = rigidbody_inertia
+		
+		delta_time += delta
+		local_velocity = lerp(((global_transform.origin - previous_global_position) / delta) * global_transform.basis, local_velocity, 0.5)
+		previous_global_position = global_position
+		speed = local_velocity.length()
+		
+		process_drag()
+		process_braking(delta)
+		process_steering(delta)
+		process_throttle(delta)
+		process_motor(delta)
+		process_clutch(delta)
+		process_transmission(delta)
+		process_drive(delta)
+		process_forces(delta)
+		process_stability()
 
 func process_drag():
 	var drag = 0.5 * air_density * pow(speed, 2.0) * frontal_area * coefficient_of_drag

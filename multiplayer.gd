@@ -5,15 +5,16 @@ var peer = ENetMultiplayerPeer.new()
 
 @onready var ip = $CanvasLayer/IP
 @onready var port = $CanvasLayer/Port
+@onready var track = $Track
 
 
-
+var pos = 1
 
 
 
 func _on_host_pressed():
 	#Change this port to whatever you want
-	peer.create_server(int(port.text))
+	peer.create_server(57570)
 	#set the peer we use to the peer we made
 	multiplayer.multiplayer_peer = peer
 	#whenever someone joins we run add_player
@@ -27,7 +28,7 @@ func _on_host_pressed():
 
 func _on_join_pressed():
 	#Change this port and ip to whatever you want, 127.0.0.1 is on the same machine
-	peer.create_client(str(ip.text), int(port.text))
+	peer.create_client("127.0.0.1", 57570)
 	#sets the peer to the peer we just made
 	multiplayer.multiplayer_peer = peer
 	#hide buttons and capture mouse
@@ -37,9 +38,20 @@ func _on_join_pressed():
 
 func add_player(id = 1):
 	#instances the player, names it the id of the connecting person, and adds them to the scene
+	print("added")
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	call_deferred("add_child",player)
+
+	if pos == 1: player.position = track.pos1.global_position
+	if pos == 2: player.position = track.pos2.global_position
+	if pos == 3: player.position = track.pos3.global_position
+	if pos == 4: player.position = track.pos4.global_position
+	if pos == 5: player.position = track.pos5.global_position
+	if pos == 6: player.position = track.pos6.global_position
+	if pos == 7: player.position = track.pos7.global_position
+	if pos == 8: player.position = track.pos8.global_position
+	pos += 1
 
 func exit_game(id):
 	#disconnect smoothly and delete the player for everyone
