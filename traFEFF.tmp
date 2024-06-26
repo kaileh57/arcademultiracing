@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgh7b17cfo3pb"]
+
+[ext_resource type="Script" path="res://track.gd" id="1_4xlvw"]
+[ext_resource type="Environment" uid="uid://c64d5eft34eyy" path="res://trackenv.tres" id="1_pfs4e"]
+[ext_resource type="MeshLibrary" uid="uid://5adi2iobv6n2" path="res://tilemaps/lib2.tres" id="1_pxd21"]
+[ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_a83bf"]
+[ext_resource type="PackedScene" uid="uid://c3ixqkc6k13yi" path="res://addons/gevp/scenes/vehicle_controller.tscn" id="3_1ege7"]
+[ext_resource type="PackedScene" uid="uid://fo6kt54q87tf" path="res://addons/gevp/scenes/arcade_car.tscn" id="3_e8jcm"]
+[ext_resource type="Script" path="res://addons/gevp/scripts/debug.gd" id="4_ysnts"]
+[ext_resource type="Script" path="res://addons/gevp/scripts/debug_ui.gd" id="5_b0pul"]
+[ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="5_g6sp1"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3xkc7"]
+
+[node name="Track" type="Node3D"]
+script = ExtResource("1_4xlvw")
+
+[node name="Processing" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_pfs4e")
+camera_attributes = SubResource("CameraAttributesPractical_3xkc7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Processing"]
+transform = Transform3D(0.612372, -0.786566, -0.0794592, 0.25, 0.0973175, 0.963343, -0.75, -0.609789, 0.256236, 0, 253, 0)
+shadow_enabled = true
+
+[node name="GridMap" type="GridMap" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh_library = ExtResource("1_pxd21")
+cell_size = Vector3(0.5, 0.01, 0.5)
+data = {
+"cells": PackedInt32Array(0, 65532, 93, 0, 4, 90, 4, 8, 1048631, 65524, 14, 655415, 10, 14, 94, 10, 16, 94, 10, 18, 94, 65526, 14, 94, 65526, 16, 94, 65526, 18, 94, 10, 20, 55, 65530, 26, 1441847, 0, 20, 90, 65534, 20, 655440, 3342334, 16, 655440, 6619134, 8, 655458, 6619134, 12, 655443, 6619134, 6, 655457, 6619134, 4, 655457, 6619134, 2, 655457, 6619134, 0, 655457, 6619134, 65534, 655457, 0, 65526, 95, 0, 65522, 99, 0, 65520, 95, 0, 65516, 101, 0, 65512, 101, 0, 65508, 101, 0, 65504, 101, 9895934, 65532, 655415, 9830410, 65522, 55, 9830410, 65520, 76, 9830410, 65518, 76, 9830410, 65516, 76, 9830410, 65514, 76, 9830410, 65512, 76, 9830408, 65520, 1441825, 9830408, 65522, 1441830, 9830408, 65518, 1441825, 9830408, 65516, 1441826, 9830408, 65514, 1441828, 9830407, 65517, 1441832, 9830407, 65519, 1441833, 12779528, 65514, 1441836, 9830410, 65508, 78, 9830410, 65504, 78, 9830410, 65500, 78, 9830410, 65496, 75, 65534, 65504, 655440, 3342334, 65500, 655440, 6619134, 65496, 655440, 9895934, 65492, 655415, 9830404, 65486, 1048631, 9830408, 65500, 48, 9830410, 65492, 48, 9830408, 65504, 66, 9830404, 65506, 655426, 9830406, 65506, 66, 9830402, 65508, 655426, 9830404, 65508, 103, 0, 65528, 93)
+}
+metadata/_edit_lock_ = true
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Start" parent="Processing/GridMap" instance=ExtResource("2_a83bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.005, 0.25)
+
+[node name="Pos1" type="Marker3D" parent="Processing/GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.423, 0.5, 0)
+
+[node name="VehicleController" parent="Processing/GridMap/Pos1" node_paths=PackedStringArray("vehicle_node") instance=ExtResource("3_1ege7")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+vehicle_node = NodePath("VehicleRigidBody")
+
+[node name="VehicleRigidBody" parent="Processing/GridMap/Pos1/VehicleController" instance=ExtResource("3_e8jcm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+center_of_mass_mode = 1
+linear_damp_mode = 1
+angular_damp_mode = 1
+stability_upright_damping = 10000.0
+
+[node name="EngineSound" parent="Processing/GridMap/Pos1/VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("5_g6sp1")]
+max_db = -24.0
+vehicle = NodePath("..")
+
+[node name="Pivot" type="Node3D" parent="Processing/GridMap/Pos1/VehicleController/VehicleRigidBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.78772)
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="Processing/GridMap/Pos1/VehicleController/VehicleRigidBody/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.07339, 5)
+
+[node name="Debug" type="Node" parent="Processing/GridMap/Pos1/VehicleController"]
+script = ExtResource("4_ysnts")
+
+[node name="DebugUI" type="Control" parent="Processing/GridMap/Pos1/VehicleController/Debug"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_b0pul")
+metadata/_edit_use_anchors_ = true
