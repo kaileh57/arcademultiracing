@@ -18,11 +18,13 @@ extends RigidBody3D
 
 
 
+
 ##Kellens stuff
 
 func kellen_physics_process(delta):
 	pivot.global_position = pivot.global_position.lerp(global_position, delta * 20.0)
 	pivot. transform = pivot.transform.interpolate_with(transform, delta * 5.0)
+	
 
 
 
