@@ -4,6 +4,37 @@
 class_name Vehicle
 extends RigidBody3D
 
+
+
+
+
+
+
+
+
+
+@onready var pivot = $Pivot
+
+
+
+
+##Kellens stuff
+
+func kellen_physics_process(delta):
+	pivot.global_position = pivot.global_position.lerp(global_position, delta * 20.0)
+	pivot. transform = pivot.transform.interpolate_with(transform, delta * 5.0)
+
+
+
+
+
+
+
+
+
+
+
+
 @export_group("Wheel Nodes")
 @export var front_left_wheel : Wheel
 @export var front_right_wheel : Wheel
@@ -568,6 +599,7 @@ func initialize():
 	is_ready = true
 
 func _physics_process(delta):
+	kellen_physics_process(delta)
 	if not is_ready:
 		return
 	

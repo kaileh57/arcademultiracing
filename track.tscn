@@ -30,33 +30,37 @@ metadata/_editor_floor_ = Vector3(0, 141, 0)
 [node name="Start" parent="Processing/GridMap" instance=ExtResource("2_a83bf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.005, 0.25)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Processing"]
-transform = Transform3D(0.612372, -0.786566, -0.0794591, 0.25, 0.0973175, 0.963343, -0.75, -0.609789, 0.256236, 0, 253, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Processing/GridMap"]
+transform = Transform3D(0.0612372, -0.0786566, -0.00794592, 0.025, 0.00973175, 0.0963343, -0.075, -0.0609789, 0.0256236, 0, 25.3, 0)
 light_energy = 3.0
 shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 278.9
 
-[node name="VehicleController" parent="Processing" node_paths=PackedStringArray("vehicle_node") instance=ExtResource("3_1ege7")]
+[node name="VehicleController" parent="Processing/GridMap" node_paths=PackedStringArray("vehicle_node") instance=ExtResource("3_1ege7")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 vehicle_node = NodePath("VehicleRigidBody")
 
-[node name="VehicleRigidBody" parent="Processing/VehicleController" instance=ExtResource("3_e8jcm")]
+[node name="VehicleRigidBody" parent="Processing/GridMap/VehicleController" instance=ExtResource("3_e8jcm")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 0.926611, -5)
 center_of_mass_mode = 1
 linear_damp_mode = 1
 angular_damp_mode = 1
 
-[node name="EngineSound" parent="Processing/VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("5_g6sp1")]
+[node name="EngineSound" parent="Processing/GridMap/VehicleController/VehicleRigidBody" node_paths=PackedStringArray("vehicle") instance=ExtResource("5_g6sp1")]
 max_db = -24.0
 vehicle = NodePath("..")
 
-[node name="Camera3D" type="Camera3D" parent="Processing/VehicleController/VehicleRigidBody"]
+[node name="Pivot" type="Node3D" parent="Processing/GridMap/VehicleController/VehicleRigidBody"]
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="Processing/GridMap/VehicleController/VehicleRigidBody/Pivot"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.07339, 5)
 
-[node name="Debug" type="Node" parent="Processing/VehicleController"]
+[node name="Debug" type="Node" parent="Processing/GridMap/VehicleController"]
 script = ExtResource("4_ysnts")
 
-[node name="DebugUI" type="Control" parent="Processing/VehicleController/Debug"]
+[node name="DebugUI" type="Control" parent="Processing/GridMap/VehicleController/Debug"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
