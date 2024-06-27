@@ -9,7 +9,7 @@ extends Node3D
 func _ready():
 	#If we are in control of this player, we'll use this camera
 	cam.current = is_multiplayer_authority()
-	position = get_parent().get_start_pos()
+
 
 
 @rpc("authority", "call_remote", "unreliable")
