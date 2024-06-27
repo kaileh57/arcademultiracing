@@ -8,8 +8,40 @@ var peer = ENetMultiplayerPeer.new()
 @onready var track = $Track
 
 
-var pos = 1
+var pos = 0
+var startpos
 
+
+
+
+
+func join_logic(id):
+	if multiplayer.multiplayer_peer.get_unique_id() == 1:
+		var posforclient = get_start_pos()
+		set_start_pos.rpc_id(id, posforclient, multiplayer.multiplayer_peer.get_unique_id())
+
+
+@rpc("any_peer", "call_local", "reliable")
+func set_start_pos(pos, id):
+	if id == 1: startpos = pos
+
+
+func get_start_pos() -> Vector3:
+	if multiplayer.multiplayer_peer.get_unique_id() == 1:
+		print(pos)
+		pos += 1
+		if pos == 1: return track.pos1.global_position
+		elif pos == 2: return track.pos2.global_position
+		elif pos == 3: return track.pos3.global_position
+		elif pos == 4: return track.pos4.global_position
+		elif pos == 5: return track.pos5.global_position
+		elif pos == 6: return track.pos6.global_position
+		elif pos == 7: return track.pos7.global_position
+		elif pos == 8: 
+			pos = 0
+			return track.pos8.global_position
+	return Vector3.ZERO
+		
 
 
 func _on_host_pressed():
@@ -19,8 +51,11 @@ func _on_host_pressed():
 	multiplayer.multiplayer_peer = peer
 	#whenever someone joins we run add_player
 	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_connected.connect(join_logic)
+	
 	#add ourselves
 	add_player()
+	join_logic(1)
 	#hide buttons and capture mouse
 	$CanvasLayer.hide()
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -37,6 +72,8 @@ func _on_join_pressed():
 	$CanvasLayer.hide()
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Camera3D.current = true
+	await get_tree().create_timer(0.5).timeout
+	find_child(str(multiplayer.multiplayer_peer.get_unique_id())).position = startpos
 	
 
 func add_player(id = 1):
@@ -46,15 +83,7 @@ func add_player(id = 1):
 	player.name = str(id)
 	call_deferred("add_child",player)
 	
-	#if pos == 1: player.position = track.pos1.global_position
-	#if pos == 2: player.position = track.pos2.global_position
-	#if pos == 3: player.position = track.pos3.global_position
-	#if pos == 4: player.position = track.pos4.global_position
-	#if pos == 5: player.position = track.pos5.global_position
-	#if pos == 6: player.position = track.pos6.global_position
-	#if pos == 7: player.position = track.pos7.global_position
-	#if pos == 8: player.position = track.pos8.global_position
-	#pos += 1
+	
 
 func exit_game(id):
 	#disconnect smoothly and delete the player for everyone
