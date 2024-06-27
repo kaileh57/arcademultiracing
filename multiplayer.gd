@@ -8,16 +8,32 @@ var peer = ENetMultiplayerPeer.new()
 @onready var track = $Track
 
 
-var pos = 0
+var pos = 1
 var startpos
 
+#Called from client to host
+@rpc("any_peer", "call_local", "reliable")
+func request_new_pos(id):
+	print(str(id) + "requested a pos update, I am " + str(multiplayer.multiplayer_peer.get_unique_id()))
+	update_car_pos.rpc_id(id, id, get_next_pos(), 1)
+
+#called from host to client
+@rpc("any_peer", "call_local", "reliable")
+func update_car_pos(id, posn, id_sender):
+	print("id " + str(id))
+	print("myid" + str(multiplayer.multiplayer_peer.get_unique_id()))
+	print("posn " + str(posn))
+	print("sender " + str(id_sender))
+	
+	if id_sender == 1: 
+		find_child(str(id), true, false).get_child(0).position = posn
 
 
-
-
-
-
-		
+func get_next_pos() -> Vector3:
+	if pos == 1: return track.pos1.position * 10
+	if pos == 2: return track.pos2.position * 10
+	pos += 1
+	return Vector3.ZERO
 
 
 func _on_host_pressed():
@@ -31,10 +47,11 @@ func _on_host_pressed():
 	
 	#add ourselves
 	add_player()
-
 	#hide buttons and capture mouse
 	$CanvasLayer.hide()
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	await get_tree().create_timer(0.5).timeout
+	update_car_pos(1, get_next_pos(), 1)
 
 
 func _on_join_pressed():
@@ -42,18 +59,18 @@ func _on_join_pressed():
 	peer.create_client("127.0.0.1", 57570)
 	#sets the peer to the peer we just made
 	multiplayer.multiplayer_peer = peer
-	print(multiplayer.multiplayer_peer.get_unique_id())
-	
+
 	#hide buttons and capture mouse
 	$CanvasLayer.hide()
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Camera3D.current = true
-
+	await get_tree().create_timer(0.5).timeout
+	request_new_pos.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
 	
 
 func add_player(id = 1):
 	#instances the player, names it the id of the connecting person, and adds them to the scene
-	print("added with ID of " + str(id))
+	if multiplayer.multiplayer_peer.get_unique_id() == 1: print("added with ID of " + str(id))
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	call_deferred("add_child",player)

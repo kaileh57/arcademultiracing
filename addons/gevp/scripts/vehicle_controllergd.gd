@@ -24,7 +24,6 @@ func _enter_tree():
 	#Sets the person in control of this player to it's id/the id of the person controlling
 	multiplayer.multiplayer_peer = get_parent().peer
 	set_multiplayer_authority(name.to_int())
-	print("I think my id is: " + str(multiplayer.multiplayer_peer.get_unique_id()))
 	$VehicleRigidBody.freeze = !is_multiplayer_authority()
 	#	print(multiplayer.get_unique_id())
 
