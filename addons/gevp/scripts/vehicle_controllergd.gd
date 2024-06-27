@@ -36,8 +36,7 @@ func _physics_process(delta):
 		vehicle_node.throttle_input = pow(Input.get_action_strength("forward"), 2.0)
 		vehicle_node.handbrake_input = Input.get_action_strength("handbrake")
 		if disabled: 
-			vehicle_node.handbrake_input = 1
-			vehicle_node.brake_input = 1
+			vehicle_node.handbrake_input = 10
 		
 		#vehicle_node.clutch_input = clampf(Input.get_action_strength("Clutch") + Input.get_action_strength("Handbrake"), 0.0, 1.0)
 		if Input.is_action_pressed("consolemode"): sens = 0.2

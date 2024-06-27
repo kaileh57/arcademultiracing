@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgh7b17cfo3pb"]
 
-[ext_resource type="Script" path="res://track.gd" id="1_4xlvw"]
+[ext_resource type="Script" path="res://tracks/track.gd" id="1_4xlvw"]
 [ext_resource type="Environment" uid="uid://c64d5eft34eyy" path="res://trackenv.tres" id="1_pfs4e"]
 [ext_resource type="MeshLibrary" uid="uid://5adi2iobv6n2" path="res://tilemaps/lib2.tres" id="1_pxd21"]
 [ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_a83bf"]

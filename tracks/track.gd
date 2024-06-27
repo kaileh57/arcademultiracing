@@ -1,4 +1,5 @@
 extends Node3D
+class_name track
 
 @export var start: Node3D
 

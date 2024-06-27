@@ -5,11 +5,17 @@ var peer = ENetMultiplayerPeer.new()
 
 @onready var ip = $CanvasLayer/IP
 @onready var port = $CanvasLayer/Port
-@onready var track = $Track
+@onready var tracknode = $Track
 
 
 var pos = 0
 var startpos
+
+
+@rpc("any_peer", "call_local", "reliable")
+func enable(id_sender, id = multiplayer.multiplayer_peer.get_unique_id()):
+	if id_sender == 1:
+		find_child(str(id), true, false).disabled = false
 
 #Called from client to host for starter pos
 @rpc("any_peer", "call_remote", "reliable")
@@ -33,15 +39,20 @@ func update_car_pos(id, posn, id_sender, dis = true, double = false):
 
 func get_next_pos() -> Vector3:
 	pos += 1
-	if pos == 1: return track.pos1.position
-	if pos == 2: return track.pos2.position
-	if pos == 3: return track.pos3.position
-	if pos == 4: return track.pos4.position
-	if pos == 5: return track.pos5.position
-	if pos == 6: return track.pos6.position
-	if pos == 7: return track.pos7.position
-	if pos == 8: return track.pos8.position
+	if pos == 1: return tracknode.pos1.position
+	if pos == 2: return tracknode.pos2.position
+	if pos == 3: return tracknode.pos3.position
+	if pos == 4: return tracknode.pos4.position
+	if pos == 5: return tracknode.pos5.position
+	if pos == 6: return tracknode.pos6.position
+	if pos == 7: return tracknode.pos7.position
+	if pos == 8: return tracknode.pos8.position
 	return Vector3.ZERO
+
+
+func _input(_event):
+	if Input.is_action_pressed("start"):
+		enable.rpc(multiplayer.multiplayer_peer.get_unique_id())
 
 
 func _on_host_pressed():

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://multiplayer.gd" id="1_isnxn"]
 [ext_resource type="PackedScene" uid="uid://ssovesbb4ij2" path="res://car/carmulti.tscn" id="2_55p4b"]
-[ext_resource type="PackedScene" uid="uid://bgh7b17cfo3pb" path="res://track.tscn" id="3_tlvsk"]
+[ext_resource type="PackedScene" uid="uid://vw0mgsn0jrjc" path="res://tracks/track2.tscn" id="3_26po7"]
 
 [node name="Multiplayer" type="Node3D"]
 script = ExtResource("1_isnxn")
@@ -81,9 +81,7 @@ alignment = 1
 _spawnable_scenes = PackedStringArray("res://car/carmulti.tscn")
 spawn_path = NodePath("..")
 
-[node name="Track" parent="." instance=ExtResource("3_tlvsk")]
-
-[node name="Cars" type="Node3D" parent="Track"]
+[node name="Track" parent="." instance=ExtResource("3_26po7")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9619, 11.3356)
