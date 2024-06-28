@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://paheiyh1enmn"]
+
+[ext_resource type="Script" path="res://tracks/track.gd" id="1_4xlvw"]
+[ext_resource type="Environment" uid="uid://c64d5eft34eyy" path="res://trackenv.tres" id="1_pfs4e"]
+[ext_resource type="MeshLibrary" uid="uid://5adi2iobv6n2" path="res://tilemaps/lib2.tres" id="1_pxd21"]
+[ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_a83bf"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3xkc7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlbpb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ax4wm"]
+material = SubResource("StandardMaterial3D_nlbpb")
+
+[node name="Track" type="Node3D" node_paths=PackedStringArray("start", "pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8")]
+script = ExtResource("1_4xlvw")
+start = NodePath("Processing/GridMap/Start")
+pos1 = NodePath("Processing/Pos1")
+pos2 = NodePath("Processing/Pos2")
+pos3 = NodePath("Processing/Pos3")
+pos4 = NodePath("Processing/Pos4")
+pos5 = NodePath("Processing/Pos5")
+pos6 = NodePath("Processing/Pos6")
+pos7 = NodePath("Processing/Pos7")
+pos8 = NodePath("Processing/Pos8")
+
+[node name="Processing" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_pfs4e")
+camera_attributes = SubResource("CameraAttributesPractical_3xkc7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Processing"]
+transform = Transform3D(0.612372, -0.786566, -0.0794592, 0.25, 0.0973175, 0.963343, -0.75, -0.609789, 0.256236, 0, 253, 0)
+shadow_enabled = true
+
+[node name="GridMap" type="GridMap" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh_library = ExtResource("1_pxd21")
+cell_size = Vector3(0.5, 0.01, 0.5)
+data = {
+"cells": PackedInt32Array(0, 65532, 93, 0, 65528, 93, 0, 4, 95, 0, 6, 95, 0, 8, 95, 0, 10, 95, 0, 12, 95, 0, 14, 95, 0, 16, 55, 65530, 22, 1441877, 65526, 18, 655466, 65526, 16, 1048652, 65528, 16, 1048652, 65528, 18, 655403, 65506, 22, 1441874, 65498, 20, 1048658, 65522, 18, 655466, 65518, 18, 655466, 65514, 18, 655466, 65524, 16, 1048652, 65522, 16, 1048652, 65520, 16, 1048652, 65518, 16, 1048652, 65516, 16, 1048652, 65514, 16, 1048652, 65526, 22, 1441877, 65522, 22, 1441877, 65518, 22, 1441877, 65514, 22, 1441891, 65510, 22, 1441891, 65524, 18, 655401, 65520, 19, 655402, 65516, 18, 40, 65527, 22, 3, 65529, 22, 3, 65525, 22, 3, 65523, 22, 3, 65521, 22, 3, 65519, 22, 3, 65517, 22, 3, -65536, 16, 56, 7, 21, 52, 65543, 21, 53, 65536, 16, 56, 131072, 16, 56, 196608, 16, 56, 262144, 16, 56, 327680, 16, 56, 393216, 16, 56, 458752, 16, 56, 524288, 16, 56, 589824, 16, 56, 655360, 16, 56, 720896, 16, 56, 786432, 16, 56, 983040, 16, 56, 917504, 16, 56, 131066, 22, 3, 65536, 15, 31)
+}
+metadata/_edit_lock_ = true
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Start" parent="Processing/GridMap" instance=ExtResource("2_a83bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.005, 0.25)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Processing/GridMap"]
+transform = Transform3D(42.5417, 0, 0, 0, 1, 0, 0, 0, 28.0825, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ax4wm")
+
+[node name="Pos1" type="Marker3D" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -4.25, 0.5, 0)
+
+[node name="Pos2" type="Marker3D" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.75, 0.5, -5)
+
+[node name="Pos3" type="Marker3D" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -4.25, 0.5, -10)
+
+[node name="Pos4" type="Marker3D" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.75, 0.5, -15)
+
+[node name="Pos5" type="Marker3D" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -4.25, 0.5, -20.0047)
+
+[node name="Pos6" type="Marker3D" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.75, 0.5, -25.0047)
+
+[node name="Pos7" type="Marker3D" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -4.25, 0.5, -30.0047)
+
+[node name="Pos8" type="Marker3D" parent="Processing"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.75, 0.5, -35.0047)
