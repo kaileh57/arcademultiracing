@@ -59,6 +59,7 @@ ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
+fog_density = 0.001
 
 [node name="Demo" type="Node3D" node_paths=PackedStringArray("pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8")]
 script = ExtResource("1_cadr5")
@@ -116,7 +117,7 @@ shape = SubResource("BoxShape3D_28hur")
 environment = SubResource("Environment_hn4xq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, 2.39286e-08, -7.28331e-08, -2.03489e-08, 0.833114, 0.553102, 7.39132e-08, 0.553102, -0.833114, 0.258789, 2.26991, 40.8382)
+transform = Transform3D(-1, 2.39286e-08, -7.28331e-08, -7.35484e-08, -0.0313946, 0.999507, 2.16302e-08, 0.999507, 0.0313946, 0.258789, 2.26991, 40.8382)
 shadow_enabled = true
 
 [node name="Pos1" type="Marker3D" parent="."]

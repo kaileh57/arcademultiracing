@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://multiplayer.gd" id="1_isnxn"]
 [ext_resource type="PackedScene" uid="uid://ssovesbb4ij2" path="res://car/carmulti.tscn" id="2_55p4b"]
-[ext_resource type="PackedScene" uid="uid://paheiyh1enmn" path="res://tracks/track3.tscn" id="3_wir6a"]
+[ext_resource type="PackedScene" uid="uid://paheiyh1enmn" path="res://tracks/track3.tscn" id="3_kwf7m"]
 
 [node name="Multiplayer" type="Node3D"]
 script = ExtResource("1_isnxn")
@@ -84,7 +84,7 @@ spawn_path = NodePath("..")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9619, 11.3356)
 
-[node name="Track" parent="." instance=ExtResource("3_wir6a")]
+[node name="Track" parent="." instance=ExtResource("3_kwf7m")]
 
 [connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]
