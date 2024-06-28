@@ -75,7 +75,7 @@ func _on_host_pressed():
 
 func _on_join_pressed():
 	#Change this port and ip to whatever you want, 127.0.0.1 is on the same machine
-	peer.create_client("127.0.0.1", 57570)
+	peer.create_client(ip.text, 57570)
 	#sets the peer to the peer we just made
 	multiplayer.multiplayer_peer = peer
 
