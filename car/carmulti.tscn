@@ -27,7 +27,7 @@ vehicle = NodePath("..")
 top_level = true
 
 [node name="Camera3D" type="Camera3D" parent="VehicleRigidBody/Pivot"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.07339, 5)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2.33606, 3.25254)
 
 [node name="Debug" type="Node" parent="VehicleRigidBody"]
 script = ExtResource("4_a63i8")

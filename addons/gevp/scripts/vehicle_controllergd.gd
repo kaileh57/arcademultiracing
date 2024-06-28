@@ -9,6 +9,7 @@ var disabled = true
 func _ready():
 	#If we are in control of this player, we'll use this camera
 	cam.current = is_multiplayer_authority()
+	$VehicleRigidBody/EngineSound.playing = is_multiplayer_authority()
 
 
 

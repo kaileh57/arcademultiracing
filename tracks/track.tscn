@@ -1,9 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgh7b17cfo3pb"]
+[gd_scene load_steps=7 format=3 uid="uid://bgh7b17cfo3pb"]
 
 [ext_resource type="Script" path="res://tracks/track.gd" id="1_4xlvw"]
-[ext_resource type="Environment" uid="uid://c64d5eft34eyy" path="res://trackenv.tres" id="1_pfs4e"]
 [ext_resource type="MeshLibrary" uid="uid://5adi2iobv6n2" path="res://tilemaps/lib2.tres" id="1_pxd21"]
 [ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_a83bf"]
+[ext_resource type="Sky" uid="uid://b5htjqbgku73i" path="res://sky.tres" id="2_lgiht"]
+
+[sub_resource type="Environment" id="Environment_gjijg"]
+background_mode = 2
+sky = ExtResource("2_lgiht")
+ambient_light_source = 3
+ambient_light_color = Color(0.196078, 0.196078, 0.196078, 1)
+ambient_light_energy = 3.0
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_white = 16.0
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.1
+volumetric_fog_density = 0.03
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3xkc7"]
 
@@ -20,7 +38,7 @@ pos7 = NodePath("Processing/Pos7")
 pos8 = NodePath("Processing/Pos8")
 
 [node name="Processing" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_pfs4e")
+environment = SubResource("Environment_gjijg")
 camera_attributes = SubResource("CameraAttributesPractical_3xkc7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Processing"]
