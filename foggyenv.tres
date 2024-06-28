@@ -1,10 +1,10 @@
-[gd_resource type="Environment" load_steps=2 format=3 uid="uid://c64d5eft34eyy"]
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://wk7oc2k8oiep"]
 
-[ext_resource type="Sky" uid="uid://b5htjqbgku73i" path="res://sky.tres" id="1_s73bd"]
+[ext_resource type="Sky" uid="uid://b5htjqbgku73i" path="res://sky.tres" id="1_7fs22"]
 
 [resource]
 background_mode = 2
-sky = ExtResource("1_s73bd")
+sky = ExtResource("1_7fs22")
 ambient_light_source = 3
 ambient_light_color = Color(0.196078, 0.196078, 0.196078, 1)
 ambient_light_energy = 3.0
@@ -18,4 +18,5 @@ sdfgi_enabled = true
 glow_enabled = true
 glow_normalized = true
 glow_intensity = 0.1
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
