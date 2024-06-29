@@ -25,8 +25,9 @@ var changed = false
 func change_color(color: Color):
 	var orig = body.get_active_material(2)
 	var dupe = orig.duplicate(true)
-	body.set_surface_override_material(2, dupe)
 	dupe.albedo_color = color
+	body.set_surface_override_material(2, dupe)
+	
 		
 
 

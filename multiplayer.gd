@@ -23,16 +23,34 @@ var map_number = 1
 var pos = 0
 var startpos
 
+@rpc("any_peer", "call_local", "reliable")
+func poll_colors(id_sender):
+	if id_sender == 1:
+		for i in get_children():
+			if i.name != "CanvasLayer" or i.name != "Track":
+				ask_my_color.rpc_id(int(str(i.name)), int(str(i.name)))
 
-@rpc("any_peer", "call_remote", "reliable")
-func request_colors():
-	print("id: " + str(multiplayer.multiplayer_peer.get_unique_id()) + "color: " + str(mycolor))
-	update_color.rpc(mycolor, multiplayer.multiplayer_peer.get_unique_id(), multiplayer.multiplayer_peer.get_unique_id())
+
+@rpc("any_peer", "call_local", "reliable")
+func set_my_color(color, sender):
+	if sender == 1: mycolor = color
+
+
+@rpc("any_peer", "call_local", "reliable")
+func ask_my_color(id):
+	update_color.rpc(mycolor, id, 1)
+
+@rpc("any_peer", "call_local", "reliable")
+func request_colors(id):
+	if multiplayer.multiplayer_peer.get_unique_id() == 1:
+		var c = get_next_color()
+		set_my_color.rpc_id(id, c, 1)
+		update_color.rpc(c, id, multiplayer.multiplayer_peer.get_unique_id())
 
 @rpc("any_peer", "call_local", "reliable")
 func update_color(color: Color, id, id_sender):
 	var child = find_child(str(id), true, false)
-	if child.get_multiplayer_authority() == id_sender:
+	if id_sender == 1 or child.get_multiplayer_authority() == id_sender:
 		child.change_color(color)
 
 @rpc("any_peer", "call_remote", "reliable")
@@ -73,9 +91,17 @@ func update_car_pos(id, posn, id_sender, dis = true, double = false):
 			find_child(str(id), true, false).get_child(0).position = posn
 			await get_tree().create_timer(0.5).timeout
 			find_child(str(id), true, false).get_child(0).position = posn
-			
-			
 
+func get_next_color() -> Color:
+	if pos == 1: return Color.RED
+	if pos == 2: return Color.BLUE
+	if pos == 3: return Color.GREEN
+	if pos == 4: return Color.YELLOW
+	if pos == 5: return Color.PURPLE
+	if pos == 6: return Color.ORANGE
+	if pos == 7: return Color.BLACK
+	if pos == 8: return Color.CHOCOLATE
+	return Color.WHITE
 
 
 ##NOTE: This doesn't work cuz this logic is just called on the host, gonna need to add a get_next_color funciton tommorow
@@ -83,39 +109,20 @@ func update_car_pos(id, posn, id_sender, dis = true, double = false):
 func get_next_pos(id) -> Vector3:
 	pos += 1
 	if pos == 1: 
-		if mycolor == null: 
-			mycolor = Color.RED
-			update_color.rpc(Color.RED, id, multiplayer.multiplayer_peer.get_unique_id())
 		return tracknode.pos1.position
 	if pos == 2: 
-		if mycolor == null: 
-			mycolor = Color.BLUE
-			update_color.rpc(Color.BLUE, id, multiplayer.multiplayer_peer.get_unique_id())
 		return tracknode.pos2.position
 	if pos == 3: 
-		if mycolor == null: 
-			mycolor = Color.GREEN
-			update_color.rpc(Color.GREEN, id, multiplayer.multiplayer_peer.get_unique_id())
 		return tracknode.pos3.position
 	if pos == 4: 
-		mycolor = Color.YELLOW
-		update_color.rpc(Color.YELLOW, id, multiplayer.multiplayer_peer.get_unique_id())
 		return tracknode.pos4.position
 	if pos == 5: 
-		mycolor = Color.PURPLE
-		update_color.rpc(Color.PURPLE, id, multiplayer.multiplayer_peer.get_unique_id())
 		return tracknode.pos5.position
 	if pos == 6: 
-		mycolor = Color.ORANGE
-		update_color.rpc(Color.ORANGE, id, multiplayer.multiplayer_peer.get_unique_id())
 		return tracknode.pos6.position
 	if pos == 7: 
-		mycolor = Color.BLACK
-		update_color.rpc(Color.BLACK, id, multiplayer.multiplayer_peer.get_unique_id())
 		return tracknode.pos7.position
 	if pos == 8: 
-		mycolor = Color.CHOCOLATE
-		update_color.rpc(Color.CHOCOLATE, id, multiplayer.multiplayer_peer.get_unique_id())
 		return tracknode.pos8.position
 	return Vector3.ZERO
 
@@ -144,6 +151,7 @@ func _on_host_pressed():
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	await get_tree().create_timer(0.5).timeout
 	update_car_pos(1, get_next_pos(1), 1)
+	request_colors(multiplayer.multiplayer_peer.get_unique_id())
 
 
 func _on_join_pressed():
@@ -159,7 +167,7 @@ func _on_join_pressed():
 	request_map.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
 	await get_tree().create_timer(0.2).timeout
 	request_new_pos.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
-	request_colors.rpc()
+	request_colors.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
 
 
 func add_player(id = 1):
@@ -169,6 +177,9 @@ func add_player(id = 1):
 	var player = fresh_player_scene.instantiate()
 	player.name = str(id)
 	add_child(player)
+	await get_tree().create_timer(0.2).timeout
+	#poll_colors.rpc(multiplayer.multiplayer_peer.get_unique_id())
+	
 	
 
 func exit_game(id):
