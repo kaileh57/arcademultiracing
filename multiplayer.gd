@@ -3,16 +3,40 @@ extends Node3D
 var peer = ENetMultiplayerPeer.new()
 @export var player_scene : PackedScene
 
+@onready var track1 = preload("res://tracks/track.tscn")
+@onready var track2 = preload("res://tracks/track2.tscn")
+@onready var track3 = preload("res://tracks/track3.tscn")
+@onready var track4 = preload("res://tracks/track4.tscn")
+
+
+
 @onready var ip = $CanvasLayer/IP
 @onready var port = $CanvasLayer/Port
-@onready var tracknode = $Track
+var tracknode
 
-
+var map_number = 3
 var pos = 0
 var startpos
 
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("any_peer", "call_remote", "reliable")
+func request_map(id_sender):
+	set_map.rpc_id(id_sender, multiplayer.multiplayer_peer.get_unique_id(), map_number)
+
+@rpc("any_peer", "call_remote", "reliable")
+func set_map(id_sender, mapn):
+	if id_sender == 1:
+		var map
+		if mapn == 1: map = track1.instantiate()
+		elif mapn == 2: map = track2.instantiate()
+		elif mapn == 3: map = track3.instantiate()
+		elif mapn == 4: map = track4.instantiate()
+		add_child(map)
+		tracknode = map
+
+
+
+@rpc("any_peer", "call_remote", "reliable")
 func enable(id_sender, id = multiplayer.multiplayer_peer.get_unique_id()):
 	if id_sender == 1:
 		find_child(str(id), true, false).disabled = false
@@ -63,7 +87,7 @@ func _on_host_pressed():
 	#whenever someone joins we run add_player
 	multiplayer.peer_connected.connect(add_player)
 
-	
+	set_map(1, map_number)
 	#add ourselves
 	add_player()
 	#hide buttons and capture mouse
@@ -82,10 +106,11 @@ func _on_join_pressed():
 	#hide buttons and capture mouse
 	$CanvasLayer.hide()
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	$Camera3D.current = true
 	await get_tree().create_timer(0.1).timeout
+	request_map.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
+	await get_tree().create_timer(1).timeout
 	request_new_pos.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
-	
+
 
 func add_player(id = 1):
 	#instances the player, names it the id of the connecting person, and adds them to the scene

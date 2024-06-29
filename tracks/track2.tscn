@@ -61,7 +61,7 @@ sdfgi_enabled = true
 glow_enabled = true
 fog_density = 0.001
 
-[node name="Demo" type="Node3D" node_paths=PackedStringArray("pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8")]
+[node name="Track" type="Node3D" node_paths=PackedStringArray("pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8")]
 script = ExtResource("1_cadr5")
 pos1 = NodePath("Pos1")
 pos2 = NodePath("Pos2")
