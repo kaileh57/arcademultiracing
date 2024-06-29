@@ -5,6 +5,9 @@ var peer = ENetMultiplayerPeer.new()
 
 @onready var fresh_player_scene: PackedScene = player_scene
 
+var local_player: Node3D
+
+
 @onready var track1 = preload("res://tracks/track.tscn")
 @onready var track2 = preload("res://tracks/track2.tscn")
 @onready var track3 = preload("res://tracks/track3.tscn")
@@ -13,7 +16,7 @@ var peer = ENetMultiplayerPeer.new()
 @onready var option_button: OptionButton = $CanvasLayer/OptionButton
 
 
-var mycolor = null
+var mycolor = Color.WHITE
 
 @onready var ip: LineEdit = $CanvasLayer/IP
 @onready var port: LineEdit = $CanvasLayer/Port
@@ -25,12 +28,9 @@ var startpos
 
 @rpc("any_peer", "call_local", "reliable")
 func poll_colors(id_sender):
-	print("mycolor: " + str(mycolor))
-	print(str(id_sender) + " polled colors")
 	if id_sender == 1:
 		for i in get_children():
 			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner":
-				print(i.name)
 				ask_my_color.rpc_id(int(str(i.name)), int(str(i.name)))
 
 
@@ -109,7 +109,7 @@ func get_next_color() -> Color:
 
 ##NOTE: This doesn't work cuz this logic is just called on the host, gonna need to add a get_next_color funciton tommorow
 
-func get_next_pos(id) -> Vector3:
+func get_next_pos(_id = 1) -> Vector3:
 	pos += 1
 	if pos == 1: 
 		return tracknode.pos1.position

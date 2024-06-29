@@ -1,6 +1,8 @@
 extends Node3D
 
+
 @export var vehicle_node : Vehicle
+@onready var username = $Username
 
 @export var sens := 1.0
 @onready var cam = $VehicleRigidBody/Pivot/Camera3D
@@ -11,6 +13,9 @@ func _ready():
 	cam.current = is_multiplayer_authority()
 	$VehicleRigidBody/EngineSound.playing = is_multiplayer_authority()
 
+func name_pivot():
+	username. position = vehicle_node.position
+	#username.look_at(get_parent().find_child(str(1), true, false).cam.position)
 
 
 func change_color(color: Color):
@@ -34,6 +39,7 @@ func _enter_tree():
 
 
 func _physics_process(delta):
+	name_pivot()
 	if is_multiplayer_authority():
 		update_pos.rpc(vehicle_node.position, vehicle_node.transform)
 		vehicle_node.brake_input = Input.get_action_strength("brakes")
