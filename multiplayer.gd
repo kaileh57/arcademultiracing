@@ -25,9 +25,12 @@ var startpos
 
 @rpc("any_peer", "call_local", "reliable")
 func poll_colors(id_sender):
+	print("mycolor: " + str(mycolor))
+	print(str(id_sender) + " polled colors")
 	if id_sender == 1:
 		for i in get_children():
-			if i.name != "CanvasLayer" or i.name != "Track":
+			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner":
+				print(i.name)
 				ask_my_color.rpc_id(int(str(i.name)), int(str(i.name)))
 
 
@@ -50,7 +53,7 @@ func request_colors(id):
 @rpc("any_peer", "call_local", "reliable")
 func update_color(color: Color, id, id_sender):
 	var child = find_child(str(id), true, false)
-	if id_sender == 1 or child.get_multiplayer_authority() == id_sender:
+	if id_sender == 1:# or child.get_multiplayer_authority() == id_sender:
 		child.change_color(color)
 
 @rpc("any_peer", "call_remote", "reliable")
@@ -177,8 +180,8 @@ func add_player(id = 1):
 	var player = fresh_player_scene.instantiate()
 	player.name = str(id)
 	add_child(player)
-	await get_tree().create_timer(0.2).timeout
-	#poll_colors.rpc(multiplayer.multiplayer_peer.get_unique_id())
+	await get_tree().create_timer(0.1).timeout
+	poll_colors.rpc(multiplayer.multiplayer_peer.get_unique_id())
 	
 	
 
