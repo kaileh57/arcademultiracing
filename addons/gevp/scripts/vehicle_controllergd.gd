@@ -3,6 +3,7 @@ extends Node3D
 
 @export var vehicle_node : Vehicle
 @onready var username = $Username
+@onready var usernametxt = $Username/Username
 
 @export var sens := 1.0
 @onready var cam = $VehicleRigidBody/Pivot/Camera3D
@@ -14,12 +15,13 @@ func _ready():
 	$VehicleRigidBody/EngineSound.playing = is_multiplayer_authority()
 
 func name_pivot():
-	username. position = vehicle_node.position
+	username.position = vehicle_node.position
 	#username.look_at(get_parent().find_child(str(1), true, false).cam.position)
 
 
-func change_color(color: Color):
-	vehicle_node.change_color(color)
+func change_color(color: Color = Color.BISQUE, username := "username"):
+	if color != Color.BISQUE: vehicle_node.change_color(color)
+	if username != "username": usernametxt.text = username
 
 
 @rpc("authority", "call_remote", "unreliable")

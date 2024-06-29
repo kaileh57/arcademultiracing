@@ -17,6 +17,8 @@ var local_player: Node3D
 
 
 var mycolor = Color.WHITE
+var myname = ""
+
 
 @onready var ip: LineEdit = $CanvasLayer/IP
 @onready var port: LineEdit = $CanvasLayer/Port
@@ -33,15 +35,33 @@ func poll_colors(id_sender):
 			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner":
 				ask_my_color.rpc_id(int(str(i.name)), int(str(i.name)))
 
+@rpc("any_peer", "call_local", "reliable")
+func poll_names(id_sender):
+	if id_sender == 1:
+		for i in get_children():
+			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner":
+				ask_my_name.rpc_id(int(str(i.name)), int(str(i.name)))
+
 
 @rpc("any_peer", "call_local", "reliable")
 func set_my_color(color, sender):
 	if sender == 1: mycolor = color
 
+@rpc("any_peer", "call_local", "reliable")
+func set_my_name(nm, sender):
+	if sender == 1: myname = nm
+
 
 @rpc("any_peer", "call_local", "reliable")
 func ask_my_color(id):
 	update_color.rpc(mycolor, id, 1)
+
+@rpc("any_peer", "call_local", "reliable")
+func ask_my_name(id):
+	update_name.rpc(myname, id, 1)
+
+
+
 
 @rpc("any_peer", "call_local", "reliable")
 func request_colors(id):
@@ -55,6 +75,16 @@ func update_color(color: Color, id, id_sender):
 	var child = find_child(str(id), true, false)
 	if id_sender == 1:# or child.get_multiplayer_authority() == id_sender:
 		child.change_color(color)
+
+@rpc("any_peer", "call_local", "reliable")
+func update_name(nm: String, id, id_sender):
+	var child = find_child(str(id), true, false)
+	if id_sender == 1:# or child.get_multiplayer_authority() == id_sender:
+		child.change_color(Color.BISQUE, nm)# Change_color is used for both colors and names
+
+
+
+
 
 @rpc("any_peer", "call_remote", "reliable")
 func request_map(id_sender):
@@ -94,6 +124,7 @@ func update_car_pos(id, posn, id_sender, dis = true, double = false):
 			find_child(str(id), true, false).get_child(0).position = posn
 			await get_tree().create_timer(0.5).timeout
 			find_child(str(id), true, false).get_child(0).position = posn
+			find_child(str(id), true, false).get_child(0).rotation = Vector3(0, PI, 0)
 
 func get_next_color() -> Color:
 	if pos == 1: return Color.RED
@@ -137,40 +168,55 @@ func _input(_event):
 
 func _on_host_pressed():
 	#Change this port to whatever you want
-	peer.create_server(57570)
-	#set the peer we use to the peer we made
-	multiplayer.multiplayer_peer = peer
-	#whenever someone joins we run add_player
-	multiplayer.peer_connected.connect(add_player)
+	myname = $CanvasLayer/Name.text
+	if myname != "":
+		peer.create_server(int(port.text))
+		#set the peer we use to the peer we made
+		multiplayer.multiplayer_peer = peer
+		#whenever someone joins we run add_player
+		multiplayer.peer_connected.connect(add_player)
+		
+		map_number = option_button.get_selected_id()
+		
+		set_map(1, map_number)
+		await get_tree().create_timer(0.1).timeout
+		#add ourselves
+		add_player()
+		#hide buttons and capture mouse
+		$CanvasLayer.hide()
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		await get_tree().create_timer(0.5).timeout
+		update_car_pos(1, get_next_pos(1), 1)
+		request_colors(multiplayer.multiplayer_peer.get_unique_id())
+		poll_names(1)
+	else:
+		$CanvasLayer/Host.text = "Please add name"
+		await get_tree().create_timer(0.5).timeout
+		$CanvasLayer/Host.text = "Host"
 	
-	map_number = option_button.get_selected_id()
-	
-	set_map(1, map_number)
-	await get_tree().create_timer(0.1).timeout
-	#add ourselves
-	add_player()
-	#hide buttons and capture mouse
-	$CanvasLayer.hide()
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	await get_tree().create_timer(0.5).timeout
-	update_car_pos(1, get_next_pos(1), 1)
-	request_colors(multiplayer.multiplayer_peer.get_unique_id())
 
 
 func _on_join_pressed():
 	#Change this port and ip to whatever you want, 127.0.0.1 is on the same machine
-	peer.create_client(ip.text, 57570)
-	#sets the peer to the peer we just made
-	multiplayer.multiplayer_peer = peer
+	myname = $CanvasLayer/Name.text
+	if myname != "":
+		peer.create_client(ip.text, int(port.text))
+		#sets the peer to the peer we just made
+		multiplayer.multiplayer_peer = peer
 
-	#hide buttons and capture mouse
-	$CanvasLayer.hide()
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	await get_tree().create_timer(0.2).timeout
-	request_map.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
-	await get_tree().create_timer(0.2).timeout
-	request_new_pos.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
-	request_colors.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
+		#hide buttons and capture mouse
+		$CanvasLayer.hide()
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		await get_tree().create_timer(0.2).timeout
+		request_map.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
+		await get_tree().create_timer(0.2).timeout
+		request_new_pos.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
+		request_colors.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
+	else:
+		$CanvasLayer/Join.text = "Please add name"
+		await get_tree().create_timer(0.5).timeout
+		$CanvasLayer/Join.text = "Join"
+	
 
 
 func add_player(id = 1):
@@ -182,7 +228,7 @@ func add_player(id = 1):
 	add_child(player)
 	await get_tree().create_timer(0.1).timeout
 	poll_colors.rpc(multiplayer.multiplayer_peer.get_unique_id())
-	
+	poll_names.rpc(multiplayer.multiplayer_peer.get_unique_id())
 	
 
 func exit_game(id):
