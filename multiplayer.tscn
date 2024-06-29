@@ -54,6 +54,7 @@ offset_right = 599.5
 offset_bottom = 437.5
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme_override_font_sizes/font_size = 100
 text = "127.0.0.1"
 placeholder_text = "IP (LAN only)"
@@ -71,17 +72,38 @@ offset_right = 599.5
 offset_bottom = 72.5
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme_override_font_sizes/font_size = 100
 text = "57575"
 placeholder_text = "Port"
 alignment = 1
 
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1424.0
+offset_top = 466.0
+offset_right = -668.0
+offset_bottom = -822.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 60
+item_count = 4
+selected = 0
+popup/item_0/text = "Sky Track"
+popup/item_0/id = 1
+popup/item_1/text = "Demo Track"
+popup/item_1/id = 2
+popup/item_2/text = "Rain Track"
+popup/item_2/id = 3
+popup/item_3/text = "Racing Track"
+popup/item_3/id = 4
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://car/carmulti.tscn")
 spawn_path = NodePath("..")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9619, 11.3356)
 
 [connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]

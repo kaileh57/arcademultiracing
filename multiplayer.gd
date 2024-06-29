@@ -8,13 +8,14 @@ var peer = ENetMultiplayerPeer.new()
 @onready var track3 = preload("res://tracks/track3.tscn")
 @onready var track4 = preload("res://tracks/track4.tscn")
 
+@onready var option_button: OptionButton = $CanvasLayer/OptionButton
 
 
-@onready var ip = $CanvasLayer/IP
-@onready var port = $CanvasLayer/Port
+@onready var ip: LineEdit = $CanvasLayer/IP
+@onready var port: LineEdit = $CanvasLayer/Port
 var tracknode
 
-var map_number = 3
+var map_number = 1
 var pos = 0
 var startpos
 
@@ -36,7 +37,7 @@ func set_map(id_sender, mapn):
 
 
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func enable(id_sender, id = multiplayer.multiplayer_peer.get_unique_id()):
 	if id_sender == 1:
 		find_child(str(id), true, false).disabled = false
@@ -86,8 +87,11 @@ func _on_host_pressed():
 	multiplayer.multiplayer_peer = peer
 	#whenever someone joins we run add_player
 	multiplayer.peer_connected.connect(add_player)
-
+	
+	map_number = option_button.get_selected_id()
+	
 	set_map(1, map_number)
+	await get_tree().create_timer(0.1).timeout
 	#add ourselves
 	add_player()
 	#hide buttons and capture mouse
@@ -106,9 +110,9 @@ func _on_join_pressed():
 	#hide buttons and capture mouse
 	$CanvasLayer.hide()
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.2).timeout
 	request_map.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.2).timeout
 	request_new_pos.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
 
 
@@ -129,10 +133,10 @@ func exit_game(id):
 
 func del_player(id):
 	#remotley delete the player from everyones game
-	rpc("_del_player", id)
+	_del_player.rpc(id)
 
 #let anyone call this and also call it here
 @rpc("any_peer","call_local")
 func _del_player(id):
 	#queue free the node
-	get_node(str(id)).queue_free()
+	find_child(str(id), true, false).queue_free()
