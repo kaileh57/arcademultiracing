@@ -3,6 +3,8 @@ extends Node3D
 var peer = ENetMultiplayerPeer.new()
 @export var player_scene : PackedScene
 
+@onready var fresh_player_scene: PackedScene = player_scene
+
 @onready var track1 = preload("res://tracks/track.tscn")
 @onready var track2 = preload("res://tracks/track2.tscn")
 @onready var track3 = preload("res://tracks/track3.tscn")
@@ -10,6 +12,8 @@ var peer = ENetMultiplayerPeer.new()
 
 @onready var option_button: OptionButton = $CanvasLayer/OptionButton
 
+
+var mycolor = null
 
 @onready var ip: LineEdit = $CanvasLayer/IP
 @onready var port: LineEdit = $CanvasLayer/Port
@@ -19,6 +23,17 @@ var map_number = 1
 var pos = 0
 var startpos
 
+
+@rpc("any_peer", "call_remote", "reliable")
+func request_colors():
+	print("id: " + str(multiplayer.multiplayer_peer.get_unique_id()) + "color: " + str(mycolor))
+	update_color.rpc(mycolor, multiplayer.multiplayer_peer.get_unique_id(), multiplayer.multiplayer_peer.get_unique_id())
+
+@rpc("any_peer", "call_local", "reliable")
+func update_color(color: Color, id, id_sender):
+	var child = find_child(str(id), true, false)
+	if child.get_multiplayer_authority() == id_sender:
+		child.change_color(color)
 
 @rpc("any_peer", "call_remote", "reliable")
 func request_map(id_sender):
@@ -45,7 +60,7 @@ func enable(id_sender, id = multiplayer.multiplayer_peer.get_unique_id()):
 #Called from client to host for starter pos
 @rpc("any_peer", "call_remote", "reliable")
 func request_new_pos(id):
-	update_car_pos.rpc_id(id, id, get_next_pos(), 1, true, true)
+	update_car_pos.rpc_id(id, id, get_next_pos(id), 1, true, true)
 
 #called from host to client
 @rpc("any_peer", "call_local", "reliable")
@@ -62,16 +77,46 @@ func update_car_pos(id, posn, id_sender, dis = true, double = false):
 			
 
 
-func get_next_pos() -> Vector3:
+
+##NOTE: This doesn't work cuz this logic is just called on the host, gonna need to add a get_next_color funciton tommorow
+
+func get_next_pos(id) -> Vector3:
 	pos += 1
-	if pos == 1: return tracknode.pos1.position
-	if pos == 2: return tracknode.pos2.position
-	if pos == 3: return tracknode.pos3.position
-	if pos == 4: return tracknode.pos4.position
-	if pos == 5: return tracknode.pos5.position
-	if pos == 6: return tracknode.pos6.position
-	if pos == 7: return tracknode.pos7.position
-	if pos == 8: return tracknode.pos8.position
+	if pos == 1: 
+		if mycolor == null: 
+			mycolor = Color.RED
+			update_color.rpc(Color.RED, id, multiplayer.multiplayer_peer.get_unique_id())
+		return tracknode.pos1.position
+	if pos == 2: 
+		if mycolor == null: 
+			mycolor = Color.BLUE
+			update_color.rpc(Color.BLUE, id, multiplayer.multiplayer_peer.get_unique_id())
+		return tracknode.pos2.position
+	if pos == 3: 
+		if mycolor == null: 
+			mycolor = Color.GREEN
+			update_color.rpc(Color.GREEN, id, multiplayer.multiplayer_peer.get_unique_id())
+		return tracknode.pos3.position
+	if pos == 4: 
+		mycolor = Color.YELLOW
+		update_color.rpc(Color.YELLOW, id, multiplayer.multiplayer_peer.get_unique_id())
+		return tracknode.pos4.position
+	if pos == 5: 
+		mycolor = Color.PURPLE
+		update_color.rpc(Color.PURPLE, id, multiplayer.multiplayer_peer.get_unique_id())
+		return tracknode.pos5.position
+	if pos == 6: 
+		mycolor = Color.ORANGE
+		update_color.rpc(Color.ORANGE, id, multiplayer.multiplayer_peer.get_unique_id())
+		return tracknode.pos6.position
+	if pos == 7: 
+		mycolor = Color.BLACK
+		update_color.rpc(Color.BLACK, id, multiplayer.multiplayer_peer.get_unique_id())
+		return tracknode.pos7.position
+	if pos == 8: 
+		mycolor = Color.CHOCOLATE
+		update_color.rpc(Color.CHOCOLATE, id, multiplayer.multiplayer_peer.get_unique_id())
+		return tracknode.pos8.position
 	return Vector3.ZERO
 
 
@@ -98,7 +143,7 @@ func _on_host_pressed():
 	$CanvasLayer.hide()
 	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	await get_tree().create_timer(0.5).timeout
-	update_car_pos(1, get_next_pos(), 1)
+	update_car_pos(1, get_next_pos(1), 1)
 
 
 func _on_join_pressed():
@@ -114,15 +159,16 @@ func _on_join_pressed():
 	request_map.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
 	await get_tree().create_timer(0.2).timeout
 	request_new_pos.rpc_id(1, multiplayer.multiplayer_peer.get_unique_id())
+	request_colors.rpc()
 
 
 func add_player(id = 1):
 	#instances the player, names it the id of the connecting person, and adds them to the scene
+	fresh_player_scene = load("res://car/carmulti.tscn")
 	if multiplayer.multiplayer_peer.get_unique_id() == 1: print("added with ID of " + str(id))
-	var player = player_scene.instantiate()
+	var player = fresh_player_scene.instantiate()
 	player.name = str(id)
-	call_deferred("add_child",player)
-	
+	add_child(player)
 	
 
 func exit_game(id):

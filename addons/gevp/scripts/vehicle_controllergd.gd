@@ -13,6 +13,10 @@ func _ready():
 
 
 
+func change_color(color: Color):
+	vehicle_node.change_color(color)
+
+
 @rpc("authority", "call_remote", "unreliable")
 func update_pos(pos, tran):
 	if !is_multiplayer_authority():

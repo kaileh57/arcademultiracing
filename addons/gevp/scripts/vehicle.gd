@@ -14,12 +14,21 @@ extends RigidBody3D
 
 
 @onready var pivot = $Pivot
+@onready var body = $body
 
 
 
 
-
+var changed = false
 ##Kellens stuff
+
+func change_color(color: Color):
+	var orig = body.get_active_material(2)
+	var dupe = orig.duplicate(true)
+	body.set_surface_override_material(2, dupe)
+	dupe.albedo_color = color
+		
+
 
 func kellen_physics_process(delta):
 	pivot.global_position = pivot.global_position.lerp(global_position, delta * 20.0)
@@ -422,6 +431,7 @@ class Axle:
 
 
 func _ready():
+	
 	if get_parent().is_multiplayer_authority():
 		initialize()
 
