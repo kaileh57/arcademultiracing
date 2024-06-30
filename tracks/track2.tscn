@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://vw0mgsn0jrjc"]
+[gd_scene load_steps=17 format=3 uid="uid://vw0mgsn0jrjc"]
 
 [ext_resource type="Script" path="res://tracks/track2.gd" id="1_cadr5"]
+[ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_lj4po"]
 [ext_resource type="Sky" uid="uid://b5htjqbgku73i" path="res://sky.tres" id="2_mopph"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_62kxx"]
@@ -61,8 +62,9 @@ sdfgi_enabled = true
 glow_enabled = true
 fog_density = 0.001
 
-[node name="Track" type="Node3D" node_paths=PackedStringArray("pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8")]
+[node name="Track" type="Node3D" node_paths=PackedStringArray("start", "pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8")]
 script = ExtResource("1_cadr5")
+start = NodePath("Burner/Burner2/Start")
 pos1 = NodePath("Pos1")
 pos2 = NodePath("Pos2")
 pos3 = NodePath("Pos3")
@@ -72,8 +74,17 @@ pos6 = NodePath("Pos6")
 pos7 = NodePath("Pos7")
 pos8 = NodePath("Pos8")
 
+[node name="Burner" type="Node3D" parent="."]
+
+[node name="Burner2" type="Node3D" parent="Burner"]
+
+[node name="Start" parent="Burner/Burner2" instance=ExtResource("2_lj4po")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 6.40287, -0.375569, 7.70126)
+
 [node name="StaticBody3D2" type="StaticBody3D" parent="." groups=["Road"]]
 transform = Transform3D(-0.99994, -0.0108111, -0.00190644, -0.0109768, 0.982212, 0.187456, -0.000154082, 0.187466, -0.982271, 365.017, 0.316678, 90.4549)
+collision_layer = 3
+collision_mask = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
 mesh = SubResource("BoxMesh_62kxx")
@@ -103,6 +114,8 @@ material = SubResource("StandardMaterial3D_c4708")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Grass"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.258789, 0, 40.8382)
+collision_layer = 3
+collision_mask = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

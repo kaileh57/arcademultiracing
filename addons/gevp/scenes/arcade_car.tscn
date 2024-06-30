@@ -348,6 +348,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7qo4e")
 
 [node name="VehicleRigidBody" type="RigidBody3D" node_paths=PackedStringArray("front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel")]
+collision_layer = 2
 script = ExtResource("1_wr17c")
 front_left_wheel = NodePath("WheelFrontLeft")
 front_right_wheel = NodePath("WheelFrontRight")
