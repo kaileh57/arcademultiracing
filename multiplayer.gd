@@ -173,6 +173,12 @@ func get_next_pos(_id = 1) -> Vector3:
 
 
 func _input(_event):
+	if Input.is_action_just_pressed("screenshot"):
+		print("Screenshotted")
+		var capture = get_viewport().get_texture().get_image()
+		var _time = Time.get_unix_time_from_system()
+		var filename = "C:\\Users\\kellen\\Downloads\\Screenshot" + str(_time) + ".png"
+		capture.save_png(filename)
 	if Input.is_action_pressed("start"):
 		start_sequence.rpc(multiplayer.multiplayer_peer.get_unique_id())
 

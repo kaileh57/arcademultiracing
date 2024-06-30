@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1vebm4kdhvqr"]
+[gd_scene load_steps=8 format=3 uid="uid://b1vebm4kdhvqr"]
 
 [ext_resource type="ArrayMesh" uid="uid://c3lbikq2ytcjp" path="res://models/kenney/OBJ format/roadStart.obj" id="1_0goq8"]
 [ext_resource type="Script" path="res://tilemaps/start.gd" id="1_g5agu"]
@@ -18,6 +18,10 @@ proximity_fade_distance = 2.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_xa260"]
 material = SubResource("StandardMaterial3D_o3o6o")
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_gt3e5"]
+exposure_multiplier = 0.5
+frustum_focus_distance = 0.2
 
 [node name="Start" type="Node3D"]
 script = ExtResource("1_g5agu")
@@ -106,3 +110,7 @@ visible = false
 [node name="OmniLight3D" type="OmniLight3D" parent="lightColored4/Red"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352657, 0.597125, -0.575781)
 light_color = Color(0.929412, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636268, 0.290203, 1.28311)
+attributes = SubResource("CameraAttributesPhysical_gt3e5")
