@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ssovesbb4ij2"]
+[gd_scene load_steps=7 format=3 uid="uid://ssovesbb4ij2"]
 
 [ext_resource type="Script" path="res://addons/gevp/scripts/vehicle_controllergd.gd" id="1_3rt71"]
 [ext_resource type="PackedScene" uid="uid://fo6kt54q87tf" path="res://addons/gevp/scenes/arcade_car.tscn" id="2_yo3jx"]
 [ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="3_hiq3l"]
 [ext_resource type="Script" path="res://addons/gevp/scripts/debug.gd" id="4_a63i8"]
 [ext_resource type="Script" path="res://addons/gevp/scripts/debug_ui.gd" id="5_vltjn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_17501"]
+height = 4.16105
 
 [node name="VehicleController" type="Node3D" node_paths=PackedStringArray("vehicle_node")]
 script = ExtResource("1_3rt71")
@@ -51,3 +54,13 @@ billboard = 1
 text = "USERNAME"
 font_size = 50
 outline_size = 20
+
+[node name="DeathDetector" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathDetector"]
+transform = Transform3D(1, 0, 0, 0, -0.00382224, -0.999993, 0, 0.999993, -0.00382224, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_17501")
+
+[connection signal="area_entered" from="DeathDetector" to="." method="_on_death_detector_area_entered"]

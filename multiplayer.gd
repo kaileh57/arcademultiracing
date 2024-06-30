@@ -10,6 +10,7 @@ var peer = ENetMultiplayerPeer.new()
 
 var local_player: Node3D
 
+var pos1
 
 @onready var track1 = preload("res://tracks/track.tscn")
 @onready var track2 = preload("res://tracks/track2.tscn")
@@ -109,6 +110,7 @@ func set_map(id_sender, mapn):
 		elif mapn == 4: map = track4.instantiate()
 		add_child(map)
 		tracknode = map
+		pos1 = map.pos1
 
 
 

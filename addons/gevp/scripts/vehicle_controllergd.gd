@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var death_detector = $DeathDetector
 
 @export var vehicle_node : Vehicle
 @onready var username = $Username
@@ -9,6 +10,24 @@ extends Node3D
 @onready var cam = $VehicleRigidBody/Pivot/Camera3D
 var disabled = true
 
+
+func die():
+	vehicle_node.position = get_parent().pos1.position
+	vehicle_node.rotation = Vector3(0, PI, 0)
+	vehicle_node.linear_velocity = Vector3.ZERO
+	await get_tree().create_timer(0.5).timeout
+	vehicle_node.position = get_parent().pos1.position
+	vehicle_node.rotation = Vector3(0, PI, 0)
+	vehicle_node.linear_velocity = Vector3.ZERO
+	await get_tree().create_timer(0.5).timeout
+	vehicle_node.position = get_parent().pos1.position
+	vehicle_node.rotation = Vector3(0, PI, 0)
+	vehicle_node.linear_velocity = Vector3.ZERO
+	
+
+func _on_death_detector_area_entered(_area):
+	die()
+
 func _ready():
 	#If we are in control of this player, we'll use this camera
 	cam.current = is_multiplayer_authority()
@@ -16,6 +35,7 @@ func _ready():
 
 func name_pivot():
 	username.position = vehicle_node.position
+	death_detector.position = vehicle_node.position
 	#username.look_at(get_parent().find_child(str(1), true, false).cam.position)
 
 
@@ -29,7 +49,10 @@ func update_pos(pos, tran):
 	if !is_multiplayer_authority():
 		vehicle_node.transform = tran
 		vehicle_node.position = pos
-	
+
+func _input(_event):
+	if Input.is_action_pressed("reset"):
+		die()
 
 
 func _enter_tree():
@@ -65,3 +88,6 @@ func _physics_process(delta):
 		#if vehicle_node.current_gear == -1:
 		#	vehicle_node.brake_input = Input.get_action_strength("Throttle")
 		#	vehicle_node.throttle_input = Input.get_action_strength("Brakes")
+
+
+
