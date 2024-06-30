@@ -23,10 +23,10 @@ Music="*res://music/music.tscn"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=960
+window/size/viewport_height=540
 window/size/mode=3
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
 [input]
@@ -124,5 +124,3 @@ common/physics_ticks_per_second=120
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
 anti_aliasing/screen_space_roughness_limiter/enabled=false
-anti_aliasing/quality/msaa_3d=2
-anti_aliasing/quality/use_debanding=true

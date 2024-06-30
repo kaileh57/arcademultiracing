@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://vw0mgsn0jrjc"]
+[gd_scene load_steps=16 format=3 uid="uid://vw0mgsn0jrjc"]
 
 [ext_resource type="Script" path="res://tracks/track2.gd" id="1_cadr5"]
 [ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_lj4po"]
-[ext_resource type="Sky" uid="uid://b5htjqbgku73i" path="res://sky.tres" id="2_mopph"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_62kxx"]
 size = Vector3(15, 1, 10)
@@ -50,17 +49,6 @@ size = Vector3(1000, 1, 1000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_28hur"]
 size = Vector3(1000, 1, 1000)
-
-[sub_resource type="Environment" id="Environment_hn4xq"]
-background_mode = 2
-sky = ExtResource("2_mopph")
-tonemap_mode = 2
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
-sdfgi_enabled = true
-glow_enabled = true
-fog_density = 0.001
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qm3a"]
 size = Vector3(16.2049, 1, 1)
@@ -130,11 +118,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_28hur")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hn4xq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 2.39286e-08, -7.28331e-08, -7.35484e-08, -0.0313946, 0.999507, 2.16302e-08, 0.999507, 0.0313946, 0.258789, 2.26991, 40.8382)
-shadow_enabled = true
+directional_shadow_mode = 0
+sky_mode = 1
 
 [node name="Pos1" type="Marker3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.41443, 0.5, 0)
