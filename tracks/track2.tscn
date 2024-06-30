@@ -54,12 +54,8 @@ size = Vector3(1000, 1, 1000)
 [sub_resource type="Environment" id="Environment_hn4xq"]
 background_mode = 2
 sky = ExtResource("2_mopph")
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
-sdfgi_enabled = true
-glow_enabled = true
 fog_density = 0.001
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qm3a"]
@@ -134,7 +130,8 @@ environment = SubResource("Environment_hn4xq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 2.39286e-08, -7.28331e-08, -7.35484e-08, -0.0313946, 0.999507, 2.16302e-08, 0.999507, 0.0313946, 0.258789, 2.26991, 40.8382)
-shadow_enabled = true
+directional_shadow_mode = 0
+sky_mode = 1
 
 [node name="Pos1" type="Marker3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.41443, 0.5, 0)

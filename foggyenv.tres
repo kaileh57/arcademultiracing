@@ -5,18 +5,16 @@
 [resource]
 background_mode = 2
 sky = ExtResource("1_7fs22")
-ambient_light_source = 3
-ambient_light_color = Color(0.196078, 0.196078, 0.196078, 1)
-ambient_light_energy = 3.0
-reflected_light_source = 2
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
 tonemap_mode = 2
 tonemap_white = 16.0
-ssr_enabled = true
-ssao_enabled = true
-sdfgi_enabled = true
 sdfgi_cascades = 3
-glow_enabled = true
+sdfgi_max_distance = 102.4
 glow_normalized = true
 glow_intensity = 0.1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_emission_energy = 0.5
