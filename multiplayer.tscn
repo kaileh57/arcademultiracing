@@ -122,5 +122,17 @@ popup/item_3/id = 4
 _spawnable_scenes = PackedStringArray("res://car/carmulti.tscn")
 spawn_path = NodePath("..")
 
+[node name="Countdown" type="CanvasLayer" parent="."]
+
+[node name="Txt" type="Label" parent="Countdown"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 350
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]

@@ -33,16 +33,14 @@ shape = SubResource("ConcavePolygonShape3D_t4cj6")
 
 [node name="Light1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.243836, 0, 0, 0, 0.11192, 0.00612932, 0, -0.0478674, 0.0143312, -0.377457, 0.598364, 0.944443)
-visible = false
 mesh = SubResource("BoxMesh_xa260")
 
 [node name="Light2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.243836, 0, 0, 0, 0.11192, 0.00612932, 0, -0.0478674, 0.0143312, -0.884346, 0.598364, 0.944443)
-visible = false
 mesh = SubResource("BoxMesh_xa260")
 
 [node name="lightColored" parent="." instance=ExtResource("3_rqiqm")]
-transform = Transform3D(-0.643309, 0, -0.765607, 0, 1, 0, 0.765607, 0, -0.643309, -0.854976, 0.000952125, 0.639201)
+transform = Transform3D(-0.643309, 0, -0.765607, 0, 1, 0, 0.765607, 0, -0.643309, -0.854976, -0.243633, 0.639201)
 
 [node name="Red" type="Node3D" parent="lightColored"]
 visible = false
@@ -66,18 +64,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352657, 0.450748, -0.57578
 light_color = Color(0, 1, 0, 1)
 
 [node name="lightColored2" parent="." instance=ExtResource("3_rqiqm")]
-transform = Transform3D(-0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, -0.642788, -0.850264, 0.000952154, 0.0352497)
+transform = Transform3D(-0.62149, 0, 0.783422, 0, 1, 0, -0.783422, 0, -0.62149, -0.854976, -0.243633, 0.167086)
 
-[node name="Countdown" type="CanvasLayer" parent="."]
+[node name="Red" type="Node3D" parent="lightColored2"]
 visible = false
 
-[node name="Txt" type="Label" parent="Countdown"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 350
-text = "Get Ready!"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="OmniLight3D" type="OmniLight3D" parent="lightColored2/Red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352657, 0.597125, -0.575781)
+light_color = Color(0.929412, 0, 0, 1)
+
+[node name="Orange" type="Node3D" parent="lightColored2"]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lightColored2/Orange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352657, 0.524506, -0.575781)
+light_color = Color(0.831373, 0.415686, 0, 1)
+
+[node name="Green" type="Node3D" parent="lightColored2"]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lightColored2/Green"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352657, 0.450748, -0.575781)
+light_color = Color(0, 1, 0, 1)
+
+[node name="lightColored3" parent="." instance=ExtResource("3_rqiqm")]
+transform = Transform3D(-0.643309, 0, -0.765607, 0, 1, 0, 0.765607, 0, -0.643309, -0.852244, -0.172342, 0.641458)
+
+[node name="Red" type="Node3D" parent="lightColored3"]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lightColored3/Red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352657, 0.597125, -0.575781)
+light_color = Color(0.929412, 0, 0, 1)
+
+[node name="lightColored4" parent="." instance=ExtResource("3_rqiqm")]
+transform = Transform3D(-0.62149, 0, 0.783422, 0, 1, 0, -0.783422, 0, -0.62149, -0.857737, -0.172342, 0.175203)
+
+[node name="Red" type="Node3D" parent="lightColored4"]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lightColored4/Red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352657, 0.597125, -0.575781)
+light_color = Color(0.929412, 0, 0, 1)

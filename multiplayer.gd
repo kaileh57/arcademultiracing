@@ -5,6 +5,9 @@ var peer = ENetMultiplayerPeer.new()
 
 @onready var fresh_player_scene: PackedScene = player_scene
 
+@onready var countdown = $Countdown
+
+
 var local_player: Node3D
 
 
@@ -29,17 +32,23 @@ var pos = 0
 var startpos
 
 @rpc("any_peer", "call_local", "reliable")
+func start_sequence(id_sender):
+	if id_sender == 1: 
+		find_child("Track", true, false).start.go()
+
+
+@rpc("any_peer", "call_local", "reliable")
 func poll_colors(id_sender):
 	if id_sender == 1:
 		for i in get_children():
-			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner":
+			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner" and i.name != "Countdown":
 				ask_my_color.rpc_id(int(str(i.name)), int(str(i.name)))
 
 @rpc("any_peer", "call_local", "reliable")
 func poll_names(id_sender):
 	if id_sender == 1:
 		for i in get_children():
-			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner":
+			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner" and i.name != "Countdown":
 				ask_my_name.rpc_id(int(str(i.name)), int(str(i.name)))
 
 
@@ -163,7 +172,7 @@ func get_next_pos(_id = 1) -> Vector3:
 
 func _input(_event):
 	if Input.is_action_pressed("start"):
-		enable.rpc(multiplayer.multiplayer_peer.get_unique_id())
+		start_sequence.rpc(multiplayer.multiplayer_peer.get_unique_id())
 
 
 func _on_host_pressed():
