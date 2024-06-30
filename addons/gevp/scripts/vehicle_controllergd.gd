@@ -19,8 +19,8 @@ var deathbox = false
 var readyforlap = false
 
 func die():
-	if deathbox:
-		readyforlap = false
+	if deathbox && is_multiplayer_authority():
+		print("actually died")
 		vehicle_node.position = get_parent().pos1.position
 		vehicle_node.rotation = Vector3(0, PI, 0)
 		vehicle_node.linear_velocity = Vector3.ZERO
@@ -35,6 +35,7 @@ func die():
 	
 
 func _on_death_detector_area_entered(_area):
+	print(str(name) + " died")
 	die()
 
 func _on_lap_detector_area_entered(area):
@@ -77,6 +78,7 @@ func update_pos(pos, tran):
 
 func _input(_event):
 	if Input.is_action_pressed("reset"):
+		print(str(name) + " reset")
 		die()
 
 
