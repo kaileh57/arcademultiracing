@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1vebm4kdhvqr"]
+[gd_scene load_steps=9 format=3 uid="uid://b1vebm4kdhvqr"]
 
 [ext_resource type="ArrayMesh" uid="uid://c3lbikq2ytcjp" path="res://models/kenney/OBJ format/roadStart.obj" id="1_0goq8"]
 [ext_resource type="Script" path="res://tilemaps/start.gd" id="1_g5agu"]
@@ -22,6 +22,9 @@ material = SubResource("StandardMaterial3D_o3o6o")
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_gt3e5"]
 exposure_multiplier = 0.5
 frustum_focus_distance = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_clpwo"]
+size = Vector3(1.21826, 1, 1)
 
 [node name="Start" type="Node3D"]
 script = ExtResource("1_g5agu")
@@ -114,3 +117,12 @@ light_color = Color(0.929412, 0, 0, 1)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636268, 0.290203, 1.28311)
 attributes = SubResource("CameraAttributesPhysical_gt3e5")
+
+[node name="Start" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.541782, 0.488509, 0.959367)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109131, 0, 0.461641)
+shape = SubResource("BoxShape3D_clpwo")

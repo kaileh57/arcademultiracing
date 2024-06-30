@@ -44,4 +44,4 @@ func go():
 	cd2.get_child(3).show()
 	top.enable.rpc(top.multiplayer.multiplayer_peer.get_unique_id())
 	await get_tree().create_timer(1.0).timeout
-	cd.hide()
+	txt.hide()

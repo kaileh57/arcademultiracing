@@ -140,5 +140,10 @@ theme_override_font_sizes/font_size = 350
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LapCounter" type="Label" parent="Countdown"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+
 [connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]

@@ -63,4 +63,14 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, -0.00382224, -0.999993, 0, 0.999993, -0.00382224, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_17501")
 
+[node name="LapDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00243282, 0)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LapDetector"]
+transform = Transform3D(1, 0, 0, 0, -0.00382224, -0.999993, 0, 0.999993, -0.00382224, 0, 0.802565, 0)
+shape = SubResource("CapsuleShape3D_17501")
+
 [connection signal="area_entered" from="DeathDetector" to="." method="_on_death_detector_area_entered"]
+[connection signal="area_entered" from="LapDetector" to="." method="_on_lap_detector_area_entered"]

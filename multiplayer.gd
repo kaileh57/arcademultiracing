@@ -19,6 +19,7 @@ var pos1
 
 @onready var option_button: OptionButton = $CanvasLayer/OptionButton
 
+@onready var lap_counter = $Countdown/LapCounter
 
 var mycolor = Color.WHITE
 var myname = ""
@@ -148,8 +149,16 @@ func get_next_color() -> Color:
 	if pos == 8: return Color.CHOCOLATE
 	return Color.WHITE
 
+func update_scores():
+	var text = ""
+	for i in get_children():
+			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner" and i.name != "Countdown":
+				text += str(i.nm + ": " + str(i.points) + "\n")
+	lap_counter.text = text
 
-##NOTE: This doesn't work cuz this logic is just called on the host, gonna need to add a get_next_color funciton tommorow
+
+func _physics_process(_delta):
+	update_scores()
 
 func get_next_pos(_id = 1) -> Vector3:
 	pos += 1

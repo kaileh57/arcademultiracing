@@ -1,6 +1,10 @@
 extends Node3D
 
 @onready var death_detector = $DeathDetector
+@onready var lap_detector = $LapDetector
+
+var points: int = 0
+var nm: String
 
 @export var vehicle_node : Vehicle
 @onready var username = $Username
@@ -12,8 +16,11 @@ var disabled = true
 
 var deathbox = false
 
+var readyforlap = false
+
 func die():
 	if deathbox:
+		readyforlap = false
 		vehicle_node.position = get_parent().pos1.position
 		vehicle_node.rotation = Vector3(0, PI, 0)
 		vehicle_node.linear_velocity = Vector3.ZERO
@@ -30,6 +37,15 @@ func die():
 func _on_death_detector_area_entered(_area):
 	die()
 
+func _on_lap_detector_area_entered(area):
+	if readyforlap and area.name == "Start":
+		points += 1
+		readyforlap = false
+	elif area.name == "Checkpoint":
+		readyforlap = true
+
+
+
 func _ready():
 	#If we are in control of this player, we'll use this camera
 	cam.current = is_multiplayer_authority()
@@ -37,15 +53,20 @@ func _ready():
 	await get_tree().create_timer(5.0).timeout
 	deathbox = true
 
+
 func name_pivot():
 	username.position = vehicle_node.position
 	death_detector.position = vehicle_node.position
+	lap_detector.position = vehicle_node.position
+	
 	#username.look_at(get_parent().find_child(str(1), true, false).cam.position)
 
 
 func change_color(color: Color = Color.BISQUE, username := "username"):
 	if color != Color.BISQUE: vehicle_node.change_color(color)
-	if username != "username": usernametxt.text = username
+	if username != "username": 
+		usernametxt.text = username
+		nm = username
 
 
 @rpc("authority", "call_remote", "unreliable")
@@ -92,6 +113,9 @@ func _physics_process(delta):
 		#if vehicle_node.current_gear == -1:
 		#	vehicle_node.brake_input = Input.get_action_strength("Throttle")
 		#	vehicle_node.throttle_input = Input.get_action_strength("Brakes")
+
+
+
 
 
 

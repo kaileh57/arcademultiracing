@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://vw0mgsn0jrjc"]
+[gd_scene load_steps=18 format=3 uid="uid://vw0mgsn0jrjc"]
 
 [ext_resource type="Script" path="res://tracks/track2.gd" id="1_cadr5"]
 [ext_resource type="PackedScene" uid="uid://b1vebm4kdhvqr" path="res://tilemaps/start.tscn" id="2_lj4po"]
@@ -61,6 +61,9 @@ ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
 fog_density = 0.001
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qm3a"]
+size = Vector3(16.2049, 1, 1)
 
 [node name="Track" type="Node3D" node_paths=PackedStringArray("start", "pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8")]
 script = ExtResource("1_cadr5")
@@ -156,3 +159,12 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1.41443, 0.5, -30.0047)
 
 [node name="Pos8" type="Marker3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.08557, 0.5, -35.0047)
+
+[node name="Checkpoint" type="Area3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 297.352, 3.58594, -4.1899)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.398727, 0, 0.461641)
+shape = SubResource("BoxShape3D_1qm3a")
