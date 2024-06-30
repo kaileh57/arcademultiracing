@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cepddvblh7tjn"]
+
+[ext_resource type="Script" path="res://autoloads/reset.gd" id="1_2jy3t"]
+[ext_resource type="PackedScene" uid="uid://bkr8l8j7bckd4" path="res://multiplayer.tscn" id="2_078pu"]
+
+[node name="Resetter" type="Node"]
+script = ExtResource("1_2jy3t")
+main_scene = ExtResource("2_078pu")

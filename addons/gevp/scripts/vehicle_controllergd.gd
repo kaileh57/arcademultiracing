@@ -32,7 +32,7 @@ func _on_death_detector_area_entered(_area):
 
 func _ready():
 	#If we are in control of this player, we'll use this camera
-	#cam.current = is_multiplayer_authority()
+	cam.current = is_multiplayer_authority()
 	$VehicleRigidBody/EngineSound.playing = is_multiplayer_authority()
 	await get_tree().create_timer(5.0).timeout
 	deathbox = true

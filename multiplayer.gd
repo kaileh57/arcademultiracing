@@ -173,6 +173,8 @@ func get_next_pos(_id = 1) -> Vector3:
 
 
 func _input(_event):
+	if Input.is_action_just_pressed("reseteverything") && Input.is_action_pressed("reseteverything2"):
+		Resetter.reset()
 	if Input.is_action_just_pressed("screenshot"):
 		print("Screenshotted")
 		var capture = get_viewport().get_texture().get_image()
