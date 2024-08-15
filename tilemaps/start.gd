@@ -15,33 +15,33 @@ extends Node3D
 
 
 func _ready():
-	pass
+    pass
 
 func go():
-	txt.text = "Get Ready!"
+    txt.text = "Get Ready!"
 
-	await get_tree().create_timer(2.0).timeout
-	light_1.mesh.material.emission = Color.DARK_RED
-	txt.text = "3"
-	cd3.get_child(1).show()
-	cd4.get_child(1).show()
-	await get_tree().create_timer(1.0).timeout
-	light_1.mesh.material.emission = Color.RED
-	txt.text = "2"
-	cd1.get_child(1).show()
-	cd2.get_child(1).show()
-	
-	await get_tree().create_timer(1.0).timeout
-	light_1.mesh.material.emission = Color.DARK_ORANGE
-	txt.text = "1"
-	cd1.get_child(2).show()
-	cd2.get_child(2).show()
-	
-	await get_tree().create_timer(1.0).timeout
-	light_1.mesh.material.emission = Color.FOREST_GREEN
-	txt.text = "go!"
-	cd1.get_child(3).show()
-	cd2.get_child(3).show()
-	top.enable.rpc(top.multiplayer.multiplayer_peer.get_unique_id())
-	await get_tree().create_timer(1.0).timeout
-	txt.hide()
+    await get_tree().create_timer(2.0).timeout
+    light_1.mesh.material.emission = Color.DARK_RED
+    txt.text = "3"
+    cd3.get_child(1).show()
+    cd4.get_child(1).show()
+    await get_tree().create_timer(1.0).timeout
+    light_1.mesh.material.emission = Color.RED
+    txt.text = "2"
+    cd1.get_child(1).show()
+    cd2.get_child(1).show()
+    
+    await get_tree().create_timer(1.0).timeout
+    light_1.mesh.material.emission = Color.DARK_ORANGE
+    txt.text = "1"
+    cd1.get_child(2).show()
+    cd2.get_child(2).show()
+    
+    await get_tree().create_timer(1.0).timeout
+    light_1.mesh.material.emission = Color.FOREST_GREEN
+    txt.text = "go!"
+    cd1.get_child(3).show()
+    cd2.get_child(3).show()
+    top.enable.rpc(top.multiplayer.multiplayer_peer.get_unique_id())
+    await get_tree().create_timer(1.0).timeout
+    txt.hide()
