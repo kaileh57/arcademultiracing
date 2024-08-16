@@ -130,4 +130,7 @@ anti_aliasing/quality/use_debanding=true
 [xr]
 
 openxr/enabled=true
+openxr/foveation_level=3
+openxr/foveation_dynamic=true
+openxr/extensions/eye_gaze_interaction=true
 shaders/enabled=true
