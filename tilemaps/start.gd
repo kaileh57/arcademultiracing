@@ -9,14 +9,6 @@ extends Node3D
 @onready var cd4 = $lightColored4
 
 
-@onready var top = get_parent().get_parent().get_parent().get_parent()
-@onready var cd = top.countdown
-@onready var txt = cd.get_child(0, true)
-
-
-func _ready():
-	pass
-
 func go():
 	txt.text = "Get Ready!"
 
@@ -45,3 +37,12 @@ func go():
 	top.enable.rpc(top.multiplayer.multiplayer_peer.get_unique_id())
 	await get_tree().create_timer(1.0).timeout
 	txt.hide()
+
+@onready var top = get_parent().get_parent().get_parent().get_parent()
+@onready var cd = top.countdown
+@onready var txt = cd.get_child(0, true)
+
+
+func _ready():
+	pass
+

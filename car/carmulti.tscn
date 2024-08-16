@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ssovesbb4ij2"]
+[gd_scene load_steps=8 format=3 uid="uid://ssovesbb4ij2"]
 
 [ext_resource type="Script" path="res://addons/gevp/scripts/vehicle_controllergd.gd" id="1_3rt71"]
 [ext_resource type="PackedScene" uid="uid://fo6kt54q87tf" path="res://addons/gevp/scenes/arcade_car.tscn" id="2_yo3jx"]
 [ext_resource type="PackedScene" uid="uid://b2hlchrj4h2b7" path="res://addons/gevp/scenes/engine_sound.tscn" id="3_hiq3l"]
 [ext_resource type="Script" path="res://addons/gevp/scripts/debug.gd" id="4_a63i8"]
 [ext_resource type="Script" path="res://addons/gevp/scripts/debug_ui.gd" id="5_vltjn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s5xwq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_17501"]
 height = 4.16105
@@ -35,6 +37,18 @@ transform = Transform3D(0.999999, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 0.99
 
 [node name="XRCamera3D" type="XRCamera3D" parent="VehicleRigidBody/Pivot/XROrigin3D"]
 current = true
+
+[node name="LeftHand" type="XRController3D" parent="VehicleRigidBody/Pivot/XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleRigidBody/Pivot/XROrigin3D/LeftHand"]
+mesh = SubResource("CapsuleMesh_s5xwq")
+
+[node name="RightHand" type="XRController3D" parent="VehicleRigidBody/Pivot/XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleRigidBody/Pivot/XROrigin3D/RightHand"]
+mesh = SubResource("CapsuleMesh_s5xwq")
 
 [node name="Debug" type="Node" parent="VehicleRigidBody"]
 script = ExtResource("4_a63i8")

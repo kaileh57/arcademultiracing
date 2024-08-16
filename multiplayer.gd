@@ -71,6 +71,27 @@ func _ready():
 	
 
 
+@rpc("any_peer", "call_local", "reliable")
+func set_my_color(color, sender):
+	if sender == 1: mycolor = color
+
+@rpc("any_peer", "call_local", "reliable")
+func set_my_name(nm, sender):
+	if sender == 1: myname = nm
+
+
+@rpc("any_peer", "call_local", "reliable")
+func ask_my_color(id):
+	update_color.rpc(mycolor, id, 1)
+
+@rpc("any_peer", "call_local", "reliable")
+func ask_my_name(id):
+	update_name.rpc(myname, id, 1)
+
+
+
+
+
 
 
 @rpc("any_peer", "call_local", "reliable")
@@ -92,27 +113,6 @@ func poll_names(id_sender):
 		for i in get_children():
 			if i.name != "CanvasLayer" and i.name != "Track" and i.name != "MultiplayerSpawner" and i.name != "Countdown":
 				ask_my_name.rpc_id(int(str(i.name)), int(str(i.name)))
-
-
-@rpc("any_peer", "call_local", "reliable")
-func set_my_color(color, sender):
-	if sender == 1: mycolor = color
-
-@rpc("any_peer", "call_local", "reliable")
-func set_my_name(nm, sender):
-	if sender == 1: myname = nm
-
-
-@rpc("any_peer", "call_local", "reliable")
-func ask_my_color(id):
-	update_color.rpc(mycolor, id, 1)
-
-@rpc("any_peer", "call_local", "reliable")
-func ask_my_name(id):
-	update_name.rpc(myname, id, 1)
-
-
-
 
 @rpc("any_peer", "call_local", "reliable")
 func request_colors(id):
