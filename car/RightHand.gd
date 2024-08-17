@@ -19,11 +19,26 @@ func _process(delta):
 	var angle = -atan2(direction.y, direction.z)
 	
 	#print(angle)
-	wheel.rotation.z=angle
+	var rot = rad_to_deg(angle)
+	rot /= 2
+	rot += 90
+	rot = deg_to_rad(rot)
+	wheel.rotation.x= rot
+	if rot >= 0:
+		wheel.rotation.y = deg_to_rad(-90)
+		wheel.rotation.z = deg_to_rad(-90)
+	elif rot < 0:
+		wheel.rotation.z = deg_to_rad(-90)
+		wheel.rotation.y = deg_to_rad(-90)
+	
 	
 	wheel.global_position = (left.global_position + global_position) / 2
 	#var input = mesh_instance_3d.global_transform.basis.x.y
 	cont.lrinput = angle/10#mesh_instance_3d.global_transform.basis.x.y/10
+	print(cont.lrinput)
+	if abs(cont.lrinput) <= .1: cont.lrinput = 0
+	#if abs(cont.lrinput) >= .8: cont.lrinput *= 1.2
+	print(cont.lrinput)
 	#print(wheel.global_transform.basis.x.y)
 
 
