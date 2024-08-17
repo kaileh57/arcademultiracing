@@ -231,6 +231,7 @@ func _input(_event):
 		var filename = "C:\\Users\\kellen\\Downloads\\Screenshot" + str(_time) + ".png"
 		capture.save_png(filename)
 	if Input.is_action_pressed("start"):
+		print("start")
 		start_sequence.rpc(multiplayer.multiplayer_peer.get_unique_id())
 
 

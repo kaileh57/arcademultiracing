@@ -92,13 +92,18 @@ func _enter_tree():
 	#	print(multiplayer.get_unique_id())
 
 
+var lrinput := 0.0
+var gas := 0.0
+var brake := 0.0
+
+
 func _physics_process(delta):
 	name_pivot()
 	if is_multiplayer_authority():
 		update_pos.rpc(vehicle_node.position, vehicle_node.transform)
-		vehicle_node.brake_input = Input.get_action_strength("brakes")
-		vehicle_node.steering_input = Input.get_action_strength("left") - Input.get_action_strength("right") * sens
-		vehicle_node.throttle_input = pow(Input.get_action_strength("forward"), 2.0)
+		vehicle_node.brake_input = brake#Input.get_action_strength("brakes")
+		vehicle_node.steering_input = lrinput#Input.get_action_strength("left", true) - Input.get_action_strength("right", true) * sens
+		vehicle_node.throttle_input = pow(gas, 2.0)
 		vehicle_node.handbrake_input = Input.get_action_strength("handbrake")
 		if disabled: 
 			vehicle_node.handbrake_input = 10
@@ -126,5 +131,4 @@ func _physics_process(delta):
 
 
 
-func _on_left_hand_button_pressed(name):
-	pass # Replace with function body.
+
