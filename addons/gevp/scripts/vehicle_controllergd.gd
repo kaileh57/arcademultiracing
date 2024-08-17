@@ -124,3 +124,7 @@ func _physics_process(delta):
 
 
 
+
+
+func _on_left_hand_button_pressed(name):
+	pass # Replace with function body.

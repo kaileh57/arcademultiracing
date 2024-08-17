@@ -234,6 +234,7 @@ func _input(_event):
 		start_sequence.rpc(multiplayer.multiplayer_peer.get_unique_id())
 
 
+
 func _on_host_pressed():
 	#Change this port to whatever you want
 	myname = $CanvasLayer/Name.text
