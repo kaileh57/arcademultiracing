@@ -95,7 +95,7 @@ func _enter_tree():
 var lrinput := 0.0
 var gas := 0.0
 var brake := 0.0
-
+var handbrake := 0.0
 
 func _physics_process(delta):
 	name_pivot()
@@ -104,7 +104,7 @@ func _physics_process(delta):
 		vehicle_node.brake_input = brake#Input.get_action_strength("brakes")
 		vehicle_node.steering_input = lrinput#Input.get_action_strength("left", true) - Input.get_action_strength("right", true) * sens
 		vehicle_node.throttle_input = pow(gas, 2.0)
-		vehicle_node.handbrake_input = Input.get_action_strength("handbrake")
+		vehicle_node.handbrake_input = handbrake#Input.get_action_strength("handbrake")
 		if disabled: 
 			vehicle_node.handbrake_input = 10
 		

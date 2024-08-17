@@ -3,7 +3,10 @@ extends XRController3D
 var started := false
 
 @export var cont : Node3D
-@onready var wheel = $"right quest 2 controller highpoly bones/Wheel"
+@export var left : Node3D
+
+@onready var wheel = $"../Wheel"
+@onready var mesh_instance_3d = $"../Wheel/MeshInstance3D"
 
 func _on_button_pressed(name):
 	if name == "start" && !started:
@@ -11,7 +14,16 @@ func _on_button_pressed(name):
 		started = true
 
 func _process(delta):
-	cont.lrinput = -wheel.global_transform.basis.x.y/5
+
+	var direction = left.position - position
+	var angle = -atan2(direction.y, direction.z)
+	
+	#print(angle)
+	wheel.rotation.z=angle
+	
+	wheel.global_position = (left.global_position + global_position) / 2
+	#var input = mesh_instance_3d.global_transform.basis.x.y
+	cont.lrinput = angle/10#mesh_instance_3d.global_transform.basis.x.y/10
 	#print(wheel.global_transform.basis.x.y)
 
 
