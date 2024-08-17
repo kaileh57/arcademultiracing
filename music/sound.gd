@@ -26,7 +26,7 @@ func toggle_track():
 	animation_player.play("fade")
 
 func _ready():
-	toggle_track()
+	pass#toggle_track()
 
 func _input(_event):
 	if Input.is_action_just_pressed("music"):

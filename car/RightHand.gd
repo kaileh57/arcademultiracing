@@ -11,8 +11,9 @@ func _on_button_pressed(name):
 		started = true
 
 func _process(delta):
-	cont.lrinput = wheel.global_rotation.y/180*PI
-	print(wheel.global_rotation.y/180*PI)
+	cont.lrinput = -wheel.global_transform.basis.x.y/5
+	#print(wheel.global_transform.basis.x.y)
+
 
 func _on_input_float_changed(name, value):
 	#print(name)
@@ -21,8 +22,8 @@ func _on_input_float_changed(name, value):
 
 
 func _on_input_vector_2_changed(name, value):
-	if name == "primary":
-		cont.lrinput = -value.x
+	pass#if name == "primary":
+	#	cont.lrinput = -value.x
 		#if value.x <= -0.5:
 		#	Input.action_press("left")
 		#	print("left")
