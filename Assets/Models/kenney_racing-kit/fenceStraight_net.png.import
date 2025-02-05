@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0tascay3hxs7"
+uid="uid://bsbpn0jsynxfb"
 path.s3tc="res://.godot/imported/fenceStraight_net.png-63788decb207ea1f948481d21459bfd3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

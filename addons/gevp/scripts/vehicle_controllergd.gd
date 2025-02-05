@@ -101,10 +101,10 @@ func _physics_process(delta):
 	name_pivot()
 	if is_multiplayer_authority():
 		update_pos.rpc(vehicle_node.position, vehicle_node.transform)
-		vehicle_node.brake_input = brake#Input.get_action_strength("brakes")
-		vehicle_node.steering_input = lrinput#Input.get_action_strength("left", true) - Input.get_action_strength("right", true) * sens
-		vehicle_node.throttle_input = pow(gas, 2.0)
-		vehicle_node.handbrake_input = handbrake#Input.get_action_strength("handbrake")
+		vehicle_node.brake_input = Input.get_action_strength("brakes")
+		vehicle_node.steering_input = Input.get_action_strength("left", true) - Input.get_action_strength("right", true) * sens
+		vehicle_node.throttle_input = pow(Input.get_action_strength("forward"), 2.0)
+		vehicle_node.handbrake_input = Input.get_action_strength("handbrake")
 		if disabled: 
 			vehicle_node.handbrake_input = 10
 		

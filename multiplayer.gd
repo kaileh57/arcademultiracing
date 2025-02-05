@@ -29,7 +29,7 @@ var myname = ""
 @onready var port: LineEdit = $CanvasLayer/Port
 var tracknode
 
-var map_number = 1
+var map_number = 3
 var pos = 0
 var startpos
 

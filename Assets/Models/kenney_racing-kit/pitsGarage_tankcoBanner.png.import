@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca3qo76bi25ly"
+uid="uid://j6qe8jy4acbo"
 path.s3tc="res://.godot/imported/pitsGarage_tankcoBanner.png-fcd5cf96c81edba6c5af28410debd94a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
